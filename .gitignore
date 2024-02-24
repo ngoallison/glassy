@@ -17,3 +17,5 @@ npm-debug.log
 
 .passport.js
 dist/
+.node_repl_history
+.DS_Store
