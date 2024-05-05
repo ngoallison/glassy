@@ -1,17 +1,18 @@
 import { StatusBar } from "expo-status-bar";
+import styles from "../styles";
 
 import { Text, View, Pressable } from "react-native";
 import React, { Component } from "react";
 
 const Front = ({ navigation }) => {
   return (
-    <View >
-      <View ></View>
-      <View >
-        <View>
-          <Text >glassy</Text>
+    <View style={styles.container}>
+      <View style={styles.photo}></View>
+      <View style={[styles.sign]}>
+        <View style={{ flex: 1.5 }}>
+          <Text style={styles.title}>glassy</Text>
           <Text
-            style={{ color: "#3A405A", textAlign: "left" }}
+            style={[styles.lightText, { color: "#3A405A", textAlign: "left" }]}
           >
             for glowing skin you can be comfortable in.
           </Text>
@@ -22,17 +23,17 @@ const Front = ({ navigation }) => {
             justifyContent: "space-around",
           }}
         >
-          <Pressable >
+          <Pressable style={styles.solidButton}>
             <Text
-              style={{ color: "#3A405A" }}
+              style={{ color: "#FFFFFF", textAlign: "center" }}
               onPress={() => navigation.navigate("Sign In Page")}
             >
               Sign In
             </Text>
           </Pressable>
-          <Pressable >
+          <Pressable style={styles.clearButton}>
             <Text
-              style={{ color: "#FFFFFF" }}
+              style={{ color: "#3A405A", textAlign: "center" }}
               onPress={() => navigation.navigate("Register Page")}
             >
               Register
@@ -49,13 +50,14 @@ const Front = ({ navigation }) => {
         >
           <Text
             style={[
+              styles.lightText,
               { color: "#3A405A", textAlign: "center" },
             ]}
           >
             Or sign in with...
           </Text>
-          <Pressable >
-            <Text style={{ color: "#FFFFFF" }}>Other</Text>
+          <Pressable style={styles.solidButton}>
+            <Text style={{ color: "#FFFFFF", textAlign: "center" }}>Other</Text>
           </Pressable>
         </View>
       </View>
