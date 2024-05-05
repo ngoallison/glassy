@@ -1,0 +1,22 @@
+# .gitignore
+
+# dependency directories
+node_modules/
+jspm_packages
+
+# environment variables
+.env
+
+# build
+build/
+
+# logs
+logs
+*.log
+npm-debug.log
+
+.passport.js
+dist/
+.node_repl_history
+.DS_Store
+
