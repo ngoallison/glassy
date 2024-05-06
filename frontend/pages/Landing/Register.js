@@ -1,8 +1,7 @@
-import { StatusBar } from "expo-status-bar";
-import styles from "../styles";
-
-import { Text, View, SafeAreaView, Pressable, TextInput } from "react-native";
+import styles from "../../styles";
+import { Text, View, Pressable, TextInput, Image } from "react-native";
 import React, { Component } from "react";
+import LargeIcon from "../../components/LargeIcon";
 
 const Register = ({ navigation }) => {
   const [text, onChangeText] = React.useState("");
@@ -11,7 +10,8 @@ const Register = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.photo}></View>
+      <Pressable style={{ width: "110%", alignItems: "flex-end" }} onPress={() => navigation.navigate("Front Page")}><Text>ⓧ</Text></Pressable>
+      <LargeIcon></LargeIcon>
       <View style={[styles.sign]}>
         <View style={{ flex: 1.5 }}>
           <Text style={styles.title}>glassy</Text>
@@ -23,8 +23,9 @@ const Register = ({ navigation }) => {
         </View>
         <View
           style={{
-            flex: 3,
+            flex: 2.5,
             justifyContent: "space-around",
+            gap: 20
           }}
         >
           <TextInput
@@ -53,7 +54,7 @@ const Register = ({ navigation }) => {
             justifyContent: "space-around",
           }}
         >
-          <Pressable style={styles.solidButton}>
+          <Pressable onPress={() => navigation.navigate("Survey Page")} style={styles.solidButton}>
             <Text style={[styles.boldText, { color: "#FFFFFF" }]}>
               Register
             </Text>

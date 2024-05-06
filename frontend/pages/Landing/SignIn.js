@@ -1,15 +1,37 @@
-import { StatusBar } from "expo-status-bar";
-import styles from "../styles";
+import styles from "../../styles";
+import LargeIcon from "../../components/LargeIcon";
 
-import { Text, View, SafeAreaView, Pressable, TextInput } from "react-native";
+import { Text, View, SafeAreaView, Pressable, TextInput, Image } from "react-native";
 import React, { Component } from "react";
 
 const SignIn = ({ navigation }) => {
   const [text, onChangeText] = React.useState("");
-  const [number, onChangeNumber] = React.useState("");
+  const [pass, onChangePass] = React.useState("");
+
+  const [textError, setTextError] = React.useState(false);
+  const [passError, setPassError] = React.useState(false);
+
+  const handleSubmit = () => {
+    if (text.length == 0) {
+      setTextError(true);
+    }
+    else {
+      setTextError(false);
+    }
+
+    if (pass.length == 0) {
+      setPassError(true);
+    }
+    else {
+      setPassError(false);
+    }
+
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.photo}></View>
+      <Pressable style={{ width: "110%", alignItems: "flex-end" }} onPress={() => navigation.navigate("Front Page")}><Text>ⓧ</Text></Pressable>
+      <LargeIcon></LargeIcon>
       <View style={[styles.sign]}>
         <View style={{ flex: 1.5 }}>
           <Text style={styles.title}>glassy</Text>
@@ -21,23 +43,30 @@ const SignIn = ({ navigation }) => {
         </View>
         <View
           style={{
-            flex: 3,
+            flex: 2.5,
             justifyContent: "space-around",
           }}
         >
+
           <TextInput
             style={styles.input}
             onChangeText={onChangeText}
             placeholder="Email"
             value={text}
           />
+          {textError ?
+            <Text style={{ color: "red", fontSize: 10 }}>* Required Field</Text>
+            : <></>}
+
           <TextInput
             style={styles.input}
-            onChangeText={onChangeNumber}
+            onChangeText={onChangePass}
             secureTextEntry={true}
             placeholder="Password"
-            keyboardType="numeric"
           />
+          {passError ?
+            <Text style={{ color: "red", fontSize: 10 }}>* Required Field</Text>
+            : <></>}
           <Text
             style={[styles.boldText, { textAlign: "right", color: "#3A405A" }]}
           >
@@ -50,7 +79,7 @@ const SignIn = ({ navigation }) => {
             justifyContent: "space-around",
           }}
         >
-          <Pressable style={styles.solidButton}>
+          <Pressable style={styles.solidButton} onPress={handleSubmit}>
             <Text style={[styles.boldText, { color: "#FFFFFF" }]}>Sign In</Text>
           </Pressable>
           <Text

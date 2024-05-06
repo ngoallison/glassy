@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import styles from "../styles";
-
-import { Text, View, Pressable } from "react-native";
+import styles from "../../styles";
+import { Text, View, Pressable, Image } from "react-native";
 import React, { Component } from "react";
+import LargeIcon from "../../components/LargeIcon";
 
 const Front = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.photo}></View>
+      <LargeIcon></LargeIcon>
       <View style={[styles.sign]}>
         <View style={{ flex: 1.5 }}>
           <Text style={styles.title}>glassy</Text>
@@ -19,7 +19,7 @@ const Front = ({ navigation }) => {
         </View>
         <View
           style={{
-            flex: 2,
+            flex: 1.5,
             justifyContent: "space-around",
           }}
         >

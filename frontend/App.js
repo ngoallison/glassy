@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Front from "./pages/Front";
-import SignIn from "./pages/SignIn";
-import Register from "./pages/Register";
+import Front from "./pages/Landing/Front";
+import SignIn from "./pages/Landing/SignIn";
+import Register from "./pages/Landing/Register";
+import Survey from "./pages/Survey/Survey";
 import { useFonts } from "expo-font";
 
 
@@ -31,6 +32,7 @@ const App = () => {
         <Stack.Screen name="Front Page" component={Front} />
         <Stack.Screen name="Sign In Page" component={SignIn} />
         <Stack.Screen name="Register Page" component={Register} />
+        <Stack.Screen name="Survey Page" component={Survey} />
       </Stack.Navigator>
     </NavigationContainer>
   );

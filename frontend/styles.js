@@ -11,21 +11,25 @@ const styles = StyleSheet.create({
         backgroundColor: "#ECF7FE",
         alignItems: "center",
         justifyContent: "center",
-        paddingBottom: 50,
+        padding: 50,
     },
     photo: {
-        flex: 1,
+        flex: 1.3,
+        justifyContent: "center",
     },
     sign: {
         flex: 1.5,
         width: windowWidth * 0.85,
-        justifyContent: "space-around",
+        marginBottom: "5%",
+    },
+    navigationButton: {
+        width: windowWidth * 0.40,
     },
     clearButton: {
         backgroundColor: "#FFFFFF",
         borderRadius: 20,
         padding: 10,
-        height: windowHeight * 0.07,
+        height: windowHeight * 0.055,
         borderWidth: 1,
         borderColor: "#3A405A",
         justifyContent: "center",
@@ -34,7 +38,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 10,
         backgroundColor: "#3A405A",
-        height: windowHeight * 0.07,
+        height: windowHeight * 0.055,
         justifyContent: "center",
     },
     title: {
@@ -42,18 +46,27 @@ const styles = StyleSheet.create({
         fontSize: windowHeight * 0.05,
         fontFamily: "LibreCaslonTextBold",
     },
+    header: {
+        color: "#3A405A",
+        fontSize: windowHeight * 0.025,
+        fontFamily: "LibreCaslonTextBold",
+        textAlign: "center",
+        paddingBottom: 20
+    },
     boldText: {
         fontSize: windowHeight * 0.02,
         textAlign: "center",
         fontFamily: "BeVietnamProBold",
+        color: "#3A405A"
     },
     lightText: {
-        fontSize: windowHeight * 0.02,
+        color: "#3A405A",
+        fontSize: windowHeight * 0.018,
         textAlign: "center",
         fontFamily: "BeVietnamProRegular",
     },
     input: {
-        height: windowHeight * 0.07,
+        height: windowHeight * 0.055,
         borderWidth: 1,
         padding: 10,
         borderRadius: 20,
@@ -71,6 +84,38 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontWeight: 'bold',
+    },
+    skinButton: {
+        width: 125,
+        height: 125,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        borderColor: 'gray',
+        borderWidth: 1,
+        justifyContent: 'center',
+        alignItems: "center",
+        gap: 10
+    },
+    selectedButton: {
+        opacity: 1,
+    },
+    unselectedButton: {
+        opacity: 0.5
+    },
+    pageIndicatorContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginBottom: 20,
+        gap: 10,
+    },
+    pageIndicator: {
+        width: 10,
+        height: 10,
+        borderRadius: 10,
+        backgroundColor: 'gray'
+    },
+    currentPage: {
+        backgroundColor: "#3A405A"
     },
 });
 
