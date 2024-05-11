@@ -6,6 +6,11 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
+    background: {
+        height: windowHeight,
+        width: windowWidth,
+        backgroundColor: "#ECF7FE"
+    },
     container: {
         flex: 1,
         backgroundColor: "#ECF7FE",
@@ -45,6 +50,12 @@ const styles = StyleSheet.create({
         color: "#3A405A",
         fontSize: windowHeight * 0.05,
         fontFamily: "LibreCaslonTextBold",
+    },
+    largeHeader: {
+        color: "#3A405A",
+        fontSize: windowHeight * 0.035,
+        fontFamily: "LibreCaslonTextBold",
+        paddingBottom: 20
     },
     header: {
         color: "#3A405A",

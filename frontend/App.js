@@ -5,6 +5,8 @@ import Front from "./pages/Landing/Front";
 import SignIn from "./pages/Landing/SignIn";
 import Register from "./pages/Landing/Register";
 import Survey from "./pages/Survey/Survey";
+import Header from "./pages/Home/Header";
+import Home from "./pages/Home/Home";
 import { useFonts } from "expo-font";
 
 
@@ -26,13 +28,16 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Front Page"
+        initialRouteName="Home Page"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Front Page" component={Front} />
         <Stack.Screen name="Sign In Page" component={SignIn} />
         <Stack.Screen name="Register Page" component={Register} />
         <Stack.Screen name="Survey Page" component={Survey} />
+        <Stack.Screen name="Header Page" component={Header} />
+        <Stack.Screen name="Home Page" component={Home} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
