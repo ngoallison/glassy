@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
         fontSize: windowHeight * 0.025,
         fontFamily: "LibreCaslonTextBold",
         textAlign: "center",
-        paddingBottom: 20
     },
     boldText: {
         fontSize: windowHeight * 0.02,

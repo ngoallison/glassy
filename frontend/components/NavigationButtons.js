@@ -16,7 +16,8 @@ const NavigationButtons = ({ disable, back, next }) => {
                 </Text>
             </Pressable>
             <Pressable
-                onPress={next} style={[styles.solidButton, { width: "45%" }]}>
+                onPress={next}
+                style={[styles.solidButton, { width: "45%" }]}>
                 <Text style={[styles.boldText, { color: "#FFFFFF" }]}>
                     Next
                 </Text>

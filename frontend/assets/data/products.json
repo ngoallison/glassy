@@ -1,0 +1,41 @@
+[
+        {
+            "id": 1,
+            "brand": "ANUA",
+            "name": "Heartleaf Soothing Toner",
+            "category": "toner",
+            "price": "$$",
+            "rating": 4,
+            "features": {
+                "pros": ["Soothing", "Lightweight", "Smooths Texture"],
+                "cons": ["Low Impact"]
+            },
+            "photo": "https://bloomingkoco.com/cdn/shop/files/4_a20f8b02-fc7f-47e5-b301-c1817f19e091.png?v=1697592747"
+        },
+        {
+            "id": 2,
+            "brand": "Round Lab",
+            "name": "Dokdo Cleanser",
+            "category": "water cleanser",
+            "price": "$$",
+            "rating": 5,
+            "features": {
+                "pros": ["Soothing", "Lightweight", "Fragrance-Free"],
+                "cons": []
+            },
+            "photo": "https://koreanskincare.es/cdn/shop/files/49669007.jpg?v=1701851807"
+        },
+        {
+            "id": 3,
+            "brand": "SKIN1004",
+            "name": "Centella Ampoule",
+            "category": "serum",
+            "price": "$",
+            "rating": 5,
+            "features": {
+                "pros": ["Soothing", "Lightweight"],
+                "cons": []
+            },
+            "photo": "https://skin1004.com/cdn/shop/products/skin1004-ampoule-serum-centella-ampoule-38409088401654_800x.jpg?v=1677148618"
+        }
+    ]

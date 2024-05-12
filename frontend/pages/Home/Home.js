@@ -6,22 +6,28 @@ import LargeIcon from "../../components/LargeIcon";
 import apps from "../../assets/icons/apps.png"
 import bell from "../../assets/icons/bell-ring.png"
 import Header from "./Header";
-
+import ImageCard from "../../components/ImageCard"
+import cream from "../../assets/icons/home_icons/cream.png"
+import mirror from "../../assets/icons/home_icons/hand-mirror.png"
+import serum from "../../assets/icons/home_icons/serum.png"
+import skincare from "../../assets/icons/home_icons/skincare.png"
 
 const Home = ({ navigation }) => {
     return (
         <View style={styles.background}>
-            <Header></Header>
+            <Header func={() => { navigation.openDrawer() }}></Header>
             <View style={{ padding: 25, flex: 1 }}>
                 <Text style={styles.largeHeader}>welcome back, allison</Text>
                 <Text style={[styles.lightText, { textAlign: "left" }]}>what would you like to do today?</Text>
-                <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 25 }}>
-                    <View style={{ height: 160, width: 160, backgroundColor: "#D3EAF9", borderRadius: 10 }}></View>
-                    <View style={{ height: 160, width: 160, backgroundColor: "#D3EAF9", borderRadius: 10 }}></View>
+                <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", marginTop: 20, gap: 20 }}>
+                    <Pressable>
+                        <ImageCard text="Add New Products" pic={cream}></ImageCard>
+                    </Pressable>
+                    <ImageCard text="Build/Update Routine" pic={skincare}></ImageCard>
                 </View>
-                <View style={{ marginTop: 25, gap: 20 }}>
-                    <View style={{ height: 160, width: "100%", backgroundColor: "#9DBED9", borderRadius: 10 }}></View>
-                    <View style={{ height: 160, width: "100%", backgroundColor: "#647597", borderRadius: 10 }}></View>
+                <View style={{ flex: 2 }}>
+                    <ImageCard text="Monitor Progress" pic={mirror} align={true} subText="View how your skin as changed over time!" color="#647597"></ImageCard>
+                    <ImageCard text="Popular New Products" pic={serum} align={true} subText="View how your skin as changed over time!" color="#272434"></ImageCard>
                 </View>
             </View>
         </View >

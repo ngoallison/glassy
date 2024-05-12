@@ -1,14 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import styles from "../../styles";
 import NavigationButtons from "../../components/NavigationButtons";
-import { Text, View, Pressable } from "react-native";
+import { Text, View, Pressable, ImageBackground, Dimensions } from "react-native";
 import React, { Component, useState } from "react";
 import SurveyZero from "./SurveyZero";
 import SurveyOne from "./SurveyOne";
 import SurveyTwo from "./SurveyTwo";
 import SurveyThree from "./SurveyThree";
 import SurveyFour from "./SurveyFour";
-
+import blob from "../../assets/icons/blob-scene.png"
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
 const Survey = ({ navigation }) => {
 
     const [currentPage, setCurrentPage] = useState(0);
@@ -45,24 +47,33 @@ const Survey = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <View style={{ flex: 5 }}>
-                <View style={styles.pageContainer}>{renderPage()}</View>
-            </View>
 
-            <View style={{ flex: 1, justifyContent: "space-around" }}>
-                <View style={styles.pageIndicatorContainer}>
-                    {[...Array(totalPages).keys()].map((index) => (
-                        <View
-                            key={index}
-                            style={[styles.pageIndicator, currentPage === index ? styles.currentPage : null]}
-                        />
-                    ))}
+        <View style={[styles.container, { padding: 0 }]}>
+            <ImageBackground source={blob} resizeMode="stretch" style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: 50,
+            }}>
+                <View style={{ flex: 5 }}>
+                    <View style={styles.pageContainer}>{renderPage()}</View>
                 </View>
-                <NavigationButtons disable={currentPage == 0 ? true : false} back={currentPage == 0 ? () => { } : handleBack} next={handleNext}></NavigationButtons>
-            </View>
-        </View >
 
+                <View style={{ flex: 1, justifyContent: "space-around" }}>
+                    <View style={styles.pageIndicatorContainer}>
+                        {[...Array(totalPages).keys()].map((index) => (
+                            <View
+                                key={index}
+                                style={[styles.pageIndicator, currentPage === index ? styles.currentPage : null]}
+                            />
+                        ))}
+                    </View>
+                    <NavigationButtons
+                        disable={currentPage == 0 ? true : false}
+                        back={currentPage == 0 ? () => { } : handleBack}
+                        next={currentPage == totalPages - 1 ? () => { navigation.navigate("Main Page") } : handleNext}></NavigationButtons>
+                </View>
+            </ImageBackground>
+        </View >
     );
 };
 export default Survey;

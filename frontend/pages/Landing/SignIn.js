@@ -49,7 +49,7 @@ const SignIn = ({ navigation }) => {
         >
 
           <TextInput
-            style={styles.input}
+            style={[styles.input, textError ? { borderColor: "red" } : {}]}
             onChangeText={onChangeText}
             placeholder="Email"
             value={text}
@@ -59,7 +59,7 @@ const SignIn = ({ navigation }) => {
             : <></>}
 
           <TextInput
-            style={styles.input}
+            style={[styles.input, passError ? { borderColor: "red" } : {}]}
             onChangeText={onChangePass}
             secureTextEntry={true}
             placeholder="Password"
