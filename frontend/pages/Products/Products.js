@@ -3,10 +3,10 @@ import styles from "../../styles";
 import { Text, View, Pressable, Image, TextInput, StyleSheet, FlatList } from "react-native";
 import React, { Component } from "react";
 import Header from "../Home/Header";
-import ImageCard from "../../components/ImageCard"
+
 import productsData from "../../assets/data/products.json";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import ProductCard from "../../components/ProductCard";
 
 const Products = ({ navigation }) => {
 
@@ -38,16 +38,16 @@ const Products = ({ navigation }) => {
                     <Text style={styles.lightText}>Filter</Text>
                     <Text style={styles.lightText}>Sort by</Text>
                 </View>
-                <View style={{ flexWrap: "wrap", flexDirection: "row", justifyContent: "space-between", paddingTop: 20 }}>
-                    {productsData.map((item) => (
-                        <View key={item.id} style={inStyle.product}>
-                            <Image style={{ width: 170, height: 160, borderTopLeftRadius: 10, borderTopRightRadius: 15 }} source={{ uri: item.photo }} />
-                            <View style={{ flex: 1, width: "100%", padding: 10, justifyContent: "center" }}>
-                                <Text style={[styles.header, { textAlign: "left", fontSize: 18 }]}>{item.brand}</Text>
-                                <Text style={[styles.lightText, { textAlign: "left", fontSize: 14 }]} numberOfLines={1}>{item.name}</Text>
-                            </View>
-                        </View>
-                    ))}
+                <View style={{ flex: 1, paddingTop: 20, justifyContent: "space-between" }}>
+                    <FlatList
+                        key={Math.random()}
+                        data={productsData}
+                        renderItem={({ item }) => <ProductCard item={item}></ProductCard>}
+                        columnWrapperStyle={{ flexWrap: "wrap", justifyContent: "space-between" }}
+                        style={{ marginTop: 20 }}
+                        numColumns={2}
+                    >
+                    </FlatList>
                 </View>
             </View>
         </View >
