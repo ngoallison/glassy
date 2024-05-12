@@ -33,3 +33,8 @@ export const skinTypes = [
         image: normal
     }
 ]
+
+export const colors = {
+    lightBlue: "#ECF7FE",
+    darkBlue: "#3A405A"
+}

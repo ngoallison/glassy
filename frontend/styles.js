@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const styles = StyleSheet.create({
+const globalStyle = StyleSheet.create({
     background: {
         height: windowHeight,
         width: windowWidth,
@@ -19,8 +19,9 @@ const styles = StyleSheet.create({
         padding: 50,
     },
     photo: {
-        flex: 1.3,
-        justifyContent: "center",
+        flex: 1.2,
+        padding: 10,
+        justifyContent: "flex-end",
     },
     sign: {
         flex: 1.5,
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: "#3A405A",
-        fontSize: windowHeight * 0.05,
+        fontSize: 42,
         fontFamily: "LibreCaslonTextBold",
     },
     largeHeader: {
@@ -69,14 +70,14 @@ const styles = StyleSheet.create({
         fontFamily: "BeVietnamProBold",
     },
     boldText: {
-        fontSize: windowHeight * 0.02,
+        fontSize: 15,
         textAlign: "center",
         fontFamily: "BeVietnamProBold",
         color: "#3A405A"
     },
     lightText: {
         color: "#3A405A",
-        fontSize: windowHeight * 0.018,
+        fontSize: 15,
         textAlign: "center",
         fontFamily: "BeVietnamProRegular",
     },
@@ -134,6 +135,16 @@ const styles = StyleSheet.create({
     currentPage: {
         backgroundColor: "#3A405A"
     },
+    smallLightText: {
+        fontSize: 15,
+        fontFamily: "BeVietnamProRegular",
+        color: "white",
+    },
+    smallDarkText: {
+        fontSize: 15,
+        fontFamily: "BeVietnamProRegular",
+        color: "#3A405A",
+    },
 });
 
-export default styles;
+export default globalStyle;

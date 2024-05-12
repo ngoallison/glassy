@@ -1,67 +1,36 @@
 import { StatusBar } from "expo-status-bar";
-import styles from "../../styles";
-import { Text, View, Pressable, Image } from "react-native";
-import React, { Component } from "react";
+import styles from "./styles"
+import { Text, View, Pressable } from "react-native";
+import React from "react";
 import LargeIcon from "../../components/LargeIcon";
+import Button from "../../components/Button";
 
 const Front = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <LargeIcon></LargeIcon>
-      <View style={[styles.sign]}>
-        <View style={{ flex: 1.5 }}>
-          <Text style={styles.title}>glassy</Text>
-          <Text
-            style={[styles.lightText, { color: "#3A405A", textAlign: "left" }]}
-          >
-            for glowing skin you can be comfortable in.
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 1.5,
-            justifyContent: "space-around",
-          }}
-        >
-          <Pressable style={styles.solidButton}>
-            <Text
-              style={{ color: "#FFFFFF", textAlign: "center" }}
-              onPress={() => navigation.navigate("Sign In Page")}
-            >
-              Sign In
-            </Text>
-          </Pressable>
-          <Pressable style={styles.clearButton}>
-            <Text
-              style={{ color: "#3A405A", textAlign: "center" }}
-              onPress={() => navigation.navigate("Register Page")}
-            >
-              Register
-            </Text>
-          </Pressable>
-        </View>
+    <View style={styles.background}>
+      <View style={styles.container}>
+        <LargeIcon style={styles.photo}></LargeIcon>
+        <View style={styles.contentArea}>
 
-        <StatusBar style="auto" />
-        <View
-          style={{
-            flex: 2,
-            justifyContent: "space-around",
-          }}
-        >
-          <Text
-            style={[
-              styles.lightText,
-              { color: "#3A405A", textAlign: "center" },
-            ]}
-          >
-            Or sign in with...
-          </Text>
-          <Pressable style={styles.solidButton}>
-            <Text style={{ color: "#FFFFFF", textAlign: "center" }}>Other</Text>
-          </Pressable>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.title}>glassy</Text>
+            <Text style={styles.smallDarkText}>for glowing skin you can be comfortable in.</Text>
+          </View>
+
+          <View style={{ flex: 3, justifyContent: "center", gap: 30 }}>
+            <Button style="dark" func={() => navigation.navigate("Sign In Page")} label="Sign In"></Button>
+            <Button style="light" func={() => navigation.navigate("Register Page")} label="Register"></Button>
+          </View>
+
+
+          <View style={{ flex: 2, justifyContent: "space-around", }}>
+            <Text style={[styles.smallDarkText, { textAlign: "center" }]}>Or sign in with...</Text>
+            <Button style="dark" func={() => navigation.navigate("Sign In Page")} label="Sign In"></Button>
+          </View>
+
         </View>
       </View>
-    </View>
+    </View >
   );
 };
 export default Front;

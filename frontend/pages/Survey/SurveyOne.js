@@ -18,20 +18,11 @@ const SurveyOne = ({ handleOpenPress }) => {
 
     const pictures = [cactus, oil, sun, intersection]
     const types = ["Dry", "Oily", "Normal", "Combination"]
-    const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState();
 
     const handleSelect = (buttonId) => {
-        let newSelection = [...selected];
-
-        if (newSelection.includes(buttonId)) {
-            newSelection = newSelection.filter((id) => id !== buttonId);
-        }
-        else {
-            newSelection.push(buttonId);
-        }
-
-        setSelected(newSelection);
-    };
+        setSelected(buttonId);
+    }
 
     return (
 
@@ -45,7 +36,7 @@ const SurveyOne = ({ handleOpenPress }) => {
                     {types.map((type, index) => (
                         <Pressable
                             key={index}
-                            style={[styles.skinButton, selected.includes(index) ? styles.selectedButton : {}]}
+                            style={[styles.skinButton, selected == index ? styles.selectedButton : {}]}
                             onPress={() => { handleSelect(index) }}
                         >
                             <Image style={{
@@ -60,7 +51,7 @@ const SurveyOne = ({ handleOpenPress }) => {
                 </View>
 
             </View>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, gap: 10 }}>
                 <Text style={styles.lightText}>not sure what type you are?</Text>
                 <Pressable
                     onPress={handleOpenPress}
