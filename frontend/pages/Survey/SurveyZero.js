@@ -13,7 +13,7 @@ const SurveyZero = () => {
             <View style={{ flex: 2.5 }}>
                 <LargeIcon></LargeIcon>
             </View>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, gap: 20 }}>
                 <Text style={styles.header}>let's learn more about your skin</Text>
                 <Text style={styles.lightText}>tell us more about your skin, help us find your perfect products.</Text>
 

@@ -36,12 +36,12 @@ const SurveyOne = ({ handleOpenPress }) => {
     return (
 
         <View style={{ flex: 1 }}>
-            <View style={{ flex: 1, justifyContent: "center" }}>
+            <View style={{ flex: 1, justifyContent: "flex-end" }}>
                 <Text style={styles.header}>what is your skin type?</Text>
             </View>
-            <View style={{ flex: 3, gap: 40 }}>
+            <View style={{ flex: 5, gap: 40, alignItems: "center", justifyContent: "center" }}>
 
-                <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", width: "100%", gap: 20 }}>
+                <View style={{ flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", width: "100%" }}>
                     {types.map((type, index) => (
                         <Pressable
                             key={index}
@@ -58,14 +58,15 @@ const SurveyOne = ({ handleOpenPress }) => {
                     ))}
 
                 </View>
-                <View>
-                    <Text style={styles.lightText}>not sure what type you are?</Text>
-                    <Pressable
-                        onPress={handleOpenPress}
-                    >
-                        <Text style={styles.boldText}>learn about each skin type here.</Text>
-                    </Pressable>
-                </View>
+
+            </View>
+            <View style={{ flex: 1 }}>
+                <Text style={styles.lightText}>not sure what type you are?</Text>
+                <Pressable
+                    onPress={handleOpenPress}
+                >
+                    <Text style={styles.boldText}>learn about each skin type here.</Text>
+                </Pressable>
             </View>
         </View >
 
