@@ -37,5 +37,56 @@
                 "cons": []
             },
             "photo": "https://skin1004.com/cdn/shop/products/skin1004-ampoule-serum-centella-ampoule-38409088401654_800x.jpg?v=1677148618"
+        },
+        {
+            "id": 4,
+            "brand": "Mixsoon",
+            "name": "Bean Essence",
+            "category": "serum",
+            "price": "$$$",
+            "rating": 3,
+            "features": {
+                "pros": ["Smooths Texture", "Moisturizing"],
+                "cons": ["Heavyweight"]
+            }
+        },
+        {
+            "id": 5,
+            "brand": "ANUA",
+            "name": "Peach Niacin",
+            "category": "serum",
+            "price": "$$",
+            "rating": 3,
+            "features": {
+                "pros": ["Smooths Texture", "Dark Spots"],
+                "cons": ["Low Impact"]
+            },
+            "photo": "https://roseray.com/cdn/shop/files/ANUA_Peach_70__Niacinamide_Serum.webp?v=1709596408"
+        },
+        {
+            "id": 6,
+            "brand": "numbuzin",
+            "name": "No.5 Vitamin Serum",
+            "category": "serum",
+            "price": "$$",
+            "rating": 3,
+            "features": {
+                "pros": ["Dark Spots", "Hyperpigmentation"],
+                "cons": ["Breakouts"]
+            },
+            "photo": "https://sukoshimart.com/cdn/shop/files/numbuzin-5-vitamin-concentrated-serum-main-2_1024x1024.png?v=1711399263"
+
+        },
+        {
+            "id": 7,
+            "brand": "NEEDLY",
+            "name": "Toner Pads",
+            "category": "toner",
+            "price": "$$",
+            "rating": 4,
+            "features": {
+                "pros": ["Smooths Texture", "Lightweight"],
+                "cons": []
+            }
         }
     ]
