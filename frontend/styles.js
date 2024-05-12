@@ -96,21 +96,22 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     skinButton: {
-        width: 125,
+        width: "45%",
         height: 125,
         backgroundColor: 'white',
-        borderRadius: 10,
-        borderColor: 'gray',
+        borderRadius: 15,
+        borderColor: 'lightgray',
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: "center",
-        gap: 10
+        gap: 10,
+        opacity: 0.7
     },
     selectedButton: {
         opacity: 1,
-    },
-    unselectedButton: {
-        opacity: 0.5
+        backgroundColor: 'lightcyan',
+        borderColor: 'lightskyblue',
+
     },
     pageIndicatorContainer: {
         flexDirection: 'row',

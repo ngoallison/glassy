@@ -38,7 +38,7 @@ const Products = ({ navigation }) => {
                     <Text style={styles.lightText}>Filter</Text>
                     <Text style={styles.lightText}>Sort by</Text>
                 </View>
-                <View style={{ flex: 1, paddingTop: 20, justifyContent: "space-between" }}>
+                <View style={{ flex: 1, justifyContent: "space-between" }}>
                     <FlatList
                         key={Math.random()}
                         data={productsData}

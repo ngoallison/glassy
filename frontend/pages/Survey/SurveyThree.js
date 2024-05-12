@@ -18,7 +18,7 @@ const SurveyThree = ({ navigation }) => {
             </View>
             <View style={{ flex: 3, gap: 40 }}>
 
-                <View style={{ flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", width: "100%", gap: 30 }}>
+                <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", width: "100%", gap: 20 }}>
                     {types.map((type, index) => (
                         <Pressable
                             key={index}

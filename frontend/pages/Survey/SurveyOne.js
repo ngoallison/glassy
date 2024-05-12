@@ -15,18 +15,18 @@ const SurveyOne = ({ navigation }) => {
     const types = ["Dry", "Oily", "Normal", "Combination"]
     const [selected, setSelected] = useState([]);
 
-    // const handleSelect = (buttonId) => {
-    //     let newSelection = [...selected];
+    const handleSelect = (buttonId) => {
+        let newSelection = [...selected];
 
-    //     if (newSelection.includes(buttonId)) {
-    //         newSelection = newSelection.filter((id) => id !== buttonId);
-    //     }
-    //     else {
-    //         newSelection.push(buttonId);
-    //     }
+        if (newSelection.includes(buttonId)) {
+            newSelection = newSelection.filter((id) => id !== buttonId);
+        }
+        else {
+            newSelection.push(buttonId);
+        }
 
-    //     setSelected(newSelection);
-    // };
+        setSelected(newSelection);
+    };
 
     return (
 
@@ -36,16 +36,15 @@ const SurveyOne = ({ navigation }) => {
             </View>
             <View style={{ flex: 3, gap: 40 }}>
 
-                <View style={{ flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", width: "100%", gap: 30 }}>
+                <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", width: "100%", gap: 20 }}>
                     {types.map((type, index) => (
                         <Pressable
                             key={index}
-                            style={[styles.skinButton]}
-                        // onPress={handleSelect(index)}
-                        // disabled={selected.includes(index)}
+                            style={[styles.skinButton, selected.includes(index) ? styles.selectedButton : {}]}
+                            onPress={() => { handleSelect(index) }}
                         >
                             <Image style={{
-                                width: '40%',
+                                width: '45%',
                                 height: undefined,
                                 aspectRatio: 1,
                             }} source={pictures[index]} />

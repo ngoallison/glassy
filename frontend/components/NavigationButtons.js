@@ -4,7 +4,7 @@ import styles from "../styles";
 import { Text, View, Pressable } from "react-native";
 import React, { Component } from "react";
 
-const NavigationButtons = ({ disable, back, next }) => {
+const NavigationButtons = ({ disable, last, back, next }) => {
     return (
 
         <View style={{ flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
@@ -19,7 +19,7 @@ const NavigationButtons = ({ disable, back, next }) => {
                 onPress={next}
                 style={[styles.solidButton, { width: "45%" }]}>
                 <Text style={[styles.boldText, { color: "#FFFFFF" }]}>
-                    Next
+                    {last ? "Finish" : "Next"}
                 </Text>
             </Pressable>
         </View>

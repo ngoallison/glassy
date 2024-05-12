@@ -69,6 +69,7 @@ const Survey = ({ navigation }) => {
                     </View>
                     <NavigationButtons
                         disable={currentPage == 0 ? true : false}
+                        last={currentPage == totalPages - 1 ? true : false}
                         back={currentPage == 0 ? () => { } : handleBack}
                         next={currentPage == totalPages - 1 ? () => { navigation.navigate("Main Page") } : handleNext}></NavigationButtons>
                 </View>
