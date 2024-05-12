@@ -63,6 +63,11 @@ const styles = StyleSheet.create({
         fontFamily: "LibreCaslonTextBold",
         textAlign: "center",
     },
+    headerSans: {
+        color: "#3A405A",
+        fontSize: 20,
+        fontFamily: "BeVietnamProBold",
+    },
     boldText: {
         fontSize: windowHeight * 0.02,
         textAlign: "center",

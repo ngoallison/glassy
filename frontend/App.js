@@ -9,7 +9,9 @@ import Header from "./pages/Home/Header";
 import Home from "./pages/Home/Home";
 import Main from "./pages/Home/Main";
 import Products from "./pages/Products/Products";
-
+import Modal from "./pages/Survey/Modal";
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFonts } from "expo-font";
 import NavigationButtons from "./components/NavigationButtons";
 
@@ -30,22 +32,27 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Front Page"
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="Front Page" component={Front} />
-        <Stack.Screen name="Sign In Page" component={SignIn} />
-        <Stack.Screen name="Register Page" component={Register} />
-        <Stack.Screen name="Survey Page" component={Survey} />
-        <Stack.Screen name="Header Page" component={Header} />
-        <Stack.Screen name="Main Page" component={Main} />
-        <Stack.Screen name="Home Page" component={Home} />
-        <Stack.Screen name="Products Page" component={Products} />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <BottomSheetModalProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Front Page"
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name="Front Page" component={Front} />
+            <Stack.Screen name="Sign In Page" component={SignIn} />
+            <Stack.Screen name="Register Page" component={Register} />
+            <Stack.Screen name="Survey Page" component={Survey} />
+            <Stack.Screen name="Header Page" component={Header} />
+            <Stack.Screen name="Main Page" component={Main} />
+            <Stack.Screen name="Home Page" component={Home} />
+            <Stack.Screen name="Products Page" component={Products} />
+            <Stack.Screen name="Modal Page" component={Modal} />
 
-      </Stack.Navigator>
-    </NavigationContainer>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </BottomSheetModalProvider>
+    </GestureHandlerRootView>
   );
 };
 
