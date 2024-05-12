@@ -35,7 +35,7 @@ const Routine = ({ navigation }) => {
 
     return (
         <View style={styles.background}>
-            <Header func={() => { navigation.openDrawer() }}></Header>
+            <Header name="Routines" func={() => { navigation.openDrawer() }}></Header>
             <View style={{ flex: 1, padding: 20 }}>
                 <View style={{ flexDirection: "row", width: "100%", justifyContent: "space-between", gap: 10 }}>
                     <Pressable

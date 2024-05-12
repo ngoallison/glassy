@@ -6,9 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from './Home';
 import Products from '../Products/Products';
 import Routine from '../Routine/Routine';
-import Front from '../Landing/Front';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import darkBlue from '../../styles';
+import Progress from '../Progress/Progress';
+import Guides from '../Guides/Guides';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,8 +38,8 @@ const Main = () => {
             <Drawer.Screen name="home" component={Home} />
             <Drawer.Screen name="products" component={Products} />
             <Drawer.Screen name="routine" component={Routine} />
-            <Drawer.Screen name="progress" component={Home} />
-            <Drawer.Screen name="guides" component={Home} />
+            <Drawer.Screen name="progress" component={Progress} />
+            <Drawer.Screen name="guides" component={Guides} />
             <Drawer.Screen name="scan a product" component={Home} />
         </Drawer.Navigator>
     );
