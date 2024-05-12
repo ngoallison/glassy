@@ -3,23 +3,19 @@ import { Text, View, Pressable, Image } from "react-native";
 import React from "react";
 import apps from "../../assets/icons/apps.png"
 import bell from "../../assets/icons/bell-ring.png"
-import { NavigationContainer } from '@react-navigation/native';
-import {
-    createDrawerNavigator,
-    DrawerContentScrollView,
-    DrawerItemList,
-    DrawerItem,
-} from '@react-navigation/drawer';
-
+import Ionicons from "react-native-vector-icons/Ionicons"
 
 const Header = ({ func }) => {
     return (
-        <View style={{ padding: 20, backgroundColor: "#D3EAF9", height: 100, width: "100%", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end" }}>
+        <View style={{ padding: 15, backgroundColor: "#D3EAF9", height: 100, width: "100%", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end" }}>
             <Pressable onPress={func}>
-                <Image style={{ width: 20, height: 20 }} source={apps}></Image>
+                <Ionicons name="grid" color="#3A405A" size={25}></Ionicons>
+                {/* <Image style={{ width: 20, height: 20 }} source={apps}></Image> */}
             </Pressable>
             <Text>Home</Text>
-            <Image style={{ width: 20, height: 20 }} source={bell}></Image>
+            <Ionicons name="notifications" color="#3A405A" size={25}></Ionicons>
+
+            {/* <Image style={{ width: 20, height: 20 }} source={bell}></Image> */}
         </View>
     );
 };
