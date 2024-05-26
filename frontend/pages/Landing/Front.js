@@ -33,9 +33,9 @@ const Front = ({ navigation }) => {
           <View style={{ flex: 2, justifyContent: "space-around", }}>
             <Text style={[styles.smallDarkText, { textAlign: "center" }]}>Or sign in with...</Text>
             <View style={{ flexDirection: "row", gap: 50, alignItems: "center", justifyContent: "center", flex: 1 }}>
-              {icons.map((item) => {
+              {icons.map((item, index) => {
                 return (
-                  <View>
+                  <View key={index}>
                     <Image style={{ width: 40, height: 40, borderRadius: 30 }} source={item}></Image>
                   </View>
                 );
