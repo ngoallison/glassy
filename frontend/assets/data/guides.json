@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "brand": "How to Find Your Skin Type",
+        "name": "Learn some techniques to help you determine what type of skin you have.",
+        "photo": "https://bloomingkoco.com/cdn/shop/files/4_a20f8b02-fc7f-47e5-b301-c1817f19e091.png?v=1697592747"
+    },
+    {
+        "id": 2,
+        "brand": "Types of Exfoliators",
+        "name": "Read about the differences between AHAs, BHAs, PHAs, etc. and how to use them.",
+        "photo": "https://jundostudios.com/cdn/shop/products/somebymi_AHA_BHA_PHA_30_Days_Miracle_Toner__Korean_skincare_Korean_Beauty_Netherlands_2.webp?v=1669126931"
+    },
+    {
+        "id": 3,
+        "brand": "Oil Cleansing Best Practices",
+        "name": "There could be a few mistakes in how you're using your cleansing oil!.",
+        "photo": "https://skin1004.com/cdn/shop/products/skin1004-cleanser-centella-light-cleansing-oil-38409133490422_800x.jpg?v=1677151102"
+    },
+    {
+        "id": 4,
+        "brand": "Target Your Skin Concerns",
+        "name": "Identify your skin concerns and ingredients that will help target them.",
+        "photo": "https://shopdama.ca/cdn/shop/collections/MIXSOON.png?v=1706727138"
+    }
+]

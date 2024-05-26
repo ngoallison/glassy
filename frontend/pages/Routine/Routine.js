@@ -67,7 +67,7 @@ const Routine = ({ navigation }) => {
                 </View>
                 <FlatList
                     data={productsData}
-                    renderItem={({ item }) => <LongImageCard item={item}></LongImageCard>}
+                    renderItem={({ item }) => <LongImageCard side={true} item={item}></LongImageCard>}
                     style={{ marginTop: 20 }}
                 >
                 </FlatList>

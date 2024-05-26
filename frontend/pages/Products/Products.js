@@ -44,7 +44,7 @@ const Products = ({ navigation }) => {
                         data={productsData}
                         renderItem={({ item }) => <ProductCard item={item}></ProductCard>}
                         columnWrapperStyle={{ flexWrap: "wrap", justifyContent: "space-between" }}
-                        style={{ marginTop: 20 }}
+                        style={{ marginTop: 20, marginBottom: 40 }}
                         numColumns={2}
                     >
                     </FlatList>
