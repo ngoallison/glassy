@@ -6,6 +6,7 @@ import Header from "../Home/Header";
 import Ionicons from "react-native-vector-icons/Ionicons"
 import productsData from "../../assets/data/products.json";
 import LongImageCard from "../../components/LongImageCard";
+import FloatingButton from "../../components/FloatingButton";
 
 
 const Routine = ({ navigation }) => {
@@ -68,10 +69,11 @@ const Routine = ({ navigation }) => {
                 <FlatList
                     data={productsData}
                     renderItem={({ item }) => <LongImageCard side={true} item={item}></LongImageCard>}
-                    style={{ marginTop: 20 }}
+                    style={{ marginTop: 20, marginBottom: 60 }}
                 >
                 </FlatList>
             </View>
+            <FloatingButton label="Edit Routine"></FloatingButton>
         </View >
     );
 };

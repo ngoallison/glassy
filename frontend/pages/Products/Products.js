@@ -7,6 +7,7 @@ import Header from "../Home/Header";
 import productsData from "../../assets/data/products.json";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ProductCard from "../../components/ProductCard";
+import FloatingButton from "../../components/FloatingButton";
 
 const Products = ({ navigation }) => {
 
@@ -23,7 +24,7 @@ const Products = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.background}>
+        <View style={[styles.background]}>
             <Header name="Products" func={() => { navigation.openDrawer() }}></Header>
             <View style={{ flex: 1, padding: 20 }}>
                 <View style={{ flexDirection: "row", backgroundColor: "#CEDEED", borderRadius: 15, width: "100%", height: 35, alignItems: "center", paddingLeft: 10, gap: 10, borderColor: "#91ABCB", borderWidth: 1 }}>
@@ -50,6 +51,7 @@ const Products = ({ navigation }) => {
                     </FlatList>
                 </View>
             </View>
+            <FloatingButton label="+ Add Product"></FloatingButton>
         </View >
     );
 };
