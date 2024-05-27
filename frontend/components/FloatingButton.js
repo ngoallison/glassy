@@ -4,9 +4,9 @@ import globalStyle from "../styles";
 import { Text, View, Pressable, StyleSheet } from "react-native";
 import React, { Component } from "react";
 
-const FloatingButton = ({ label }) => {
+const FloatingButton = ({ label, onPress }) => {
     return (
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={onPress}>
             <Text style={styles.buttonText}>{label}</Text>
         </Pressable>
     );

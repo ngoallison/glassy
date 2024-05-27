@@ -1,17 +1,23 @@
 import { StatusBar } from "expo-status-bar";
 import styles from "../../styles";
 import { Text, View, Pressable, Image, TextInput, StyleSheet, FlatList } from "react-native";
-import React, { Component } from "react";
+import React, { Component, useRef } from "react";
 import Header from "../Home/Header";
+import BottomSheet from '@gorhom/bottom-sheet';
 
 import productsData from "../../assets/data/products.json";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ProductCard from "../../components/ProductCard";
 import FloatingButton from "../../components/FloatingButton";
+import Modal from "../../components/Modal";
+import AddModal from "./AddModal";
 
 const Products = ({ navigation }) => {
 
     const [text, onChangeText] = React.useState("");
+
+    const bottomSheetRef = useRef(<BottomSheet></BottomSheet>);
+    const handleOpenPress = () => bottomSheetRef.current?.expand();
 
     const renderItem = ({ item }) => {
         <View style={inStyle.product}>
@@ -51,7 +57,8 @@ const Products = ({ navigation }) => {
                     </FlatList>
                 </View>
             </View>
-            <FloatingButton label="+ Add Product"></FloatingButton>
+            <FloatingButton label="+ Add Product" onPress={handleOpenPress}></FloatingButton>
+            <Modal bottomSheetRef={bottomSheetRef} component={<AddModal></AddModal>}></Modal>
         </View >
     );
 };

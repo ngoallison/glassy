@@ -8,7 +8,7 @@ import cactus from "../../assets/icons/cactus.png";
 import oil from "../../assets/icons/oil.png";
 import sun from "../../assets/icons/sun.png";
 import intersection from "../../assets/icons/intersection.png";
-import Modal from "./Modal";
+import Modal from "../../components/Modal";
 
 
 const SurveyOne = ({ handleOpenPress }) => {

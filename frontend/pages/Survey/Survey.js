@@ -9,8 +9,9 @@ import SurveyTwo from "./SurveyTwo";
 import SurveyThree from "./SurveyThree";
 import SurveyFour from "./SurveyFour";
 import blob from "../../assets/icons/blob-scene.png"
-import Modal from "./Modal";
+import Modal from "../../components/Modal";
 import BottomSheet from '@gorhom/bottom-sheet';
+import SkinComponent from "./SkinComponent";
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -81,7 +82,7 @@ const Survey = ({ navigation }) => {
                         </NavigationButtons>
                     </View>
                 </ImageBackground>
-                <Modal bottomSheetRef={bottomSheetRef}></Modal>
+                <Modal bottomSheetRef={bottomSheetRef} component={<SkinComponent></SkinComponent>}></Modal>
             </View >
         </>
     );

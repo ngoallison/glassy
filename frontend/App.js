@@ -9,7 +9,7 @@ import Header from "./pages/Home/Header";
 import Home from "./pages/Home/Home";
 import Main from "./pages/Home/Main";
 import Products from "./pages/Products/Products";
-import Modal from "./pages/Survey/Modal";
+import Modal from "./components/Modal";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFonts } from "expo-font";

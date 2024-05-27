@@ -1,7 +1,6 @@
 import { StyleSheet, View, Text, Pressable, Button } from 'react-native';
 import BottomSheet, { BottomSheetScrollView, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { useCallback } from 'react';
-import SkinComponent from './SkinComponent';
 
 const Modal = (props) => {
     const snapPoints = ['90%'];
@@ -26,7 +25,7 @@ const Modal = (props) => {
             snapPoints={snapPoints}
         >
             <BottomSheetScrollView contentContainerStyle={{ padding: 20 }}>
-                <SkinComponent></SkinComponent>
+                {props.component}
             </BottomSheetScrollView>
         </BottomSheet>
 
