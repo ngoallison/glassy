@@ -32,6 +32,7 @@ const globalStyle = StyleSheet.create({
         width: windowWidth * 0.40,
     },
     clearButton: {
+        flex: 1,
         backgroundColor: "#FFFFFF",
         borderRadius: 20,
         padding: 10,
@@ -41,6 +42,7 @@ const globalStyle = StyleSheet.create({
         justifyContent: "center",
     },
     solidButton: {
+        flex: 1,
         borderRadius: 20,
         padding: 10,
         backgroundColor: "#3A405A",
@@ -87,6 +89,13 @@ const globalStyle = StyleSheet.create({
         padding: 10,
         borderRadius: 15,
         backgroundColor: "rgba(255, 255, 255, 0.5)",
+    },
+    inputSoft: {
+        height: windowHeight * 0.045,
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 15,
+        backgroundColor: "#EDF2F7",
     },
     circleButton: {
         width: 50,
