@@ -32,7 +32,6 @@ const globalStyle = StyleSheet.create({
         width: windowWidth * 0.40,
     },
     clearButton: {
-        flex: 1,
         backgroundColor: "#FFFFFF",
         borderRadius: 20,
         padding: 10,
@@ -42,11 +41,10 @@ const globalStyle = StyleSheet.create({
         justifyContent: "center",
     },
     solidButton: {
-        flex: 1,
+        height: windowHeight * 0.05,
         borderRadius: 20,
         padding: 10,
         backgroundColor: "#3A405A",
-        height: windowHeight * 0.05,
         justifyContent: "center",
     },
     title: {
