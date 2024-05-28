@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "notes": "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+        "favorites": ["ANUA Heartleaf Soothing Toner", "mixsoon Bean Essence"],
+        "photos": [
+            "https://roseray.com/cdn/shop/files/ANUA_Peach_70__Niacinamide_Serum.webp?v=1709596408",
+            "https://sukoshimart.com/cdn/shop/files/numbuzin-5-vitamin-concentrated-serum-main-2_1024x1024.png?v=1711399263",
+            "https://jundostudios.com/cdn/shop/products/somebymi_AHA_BHA_PHA_30_Days_Miracle_Toner__Korean_skincare_Korean_Beauty_Netherlands_2.webp?v=1669126931"
+        ],
+        "rating": "good"
+    },
+    {
+        "id": 2,
+        "notes": "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+        "favorites": ["ANUA Niacinamide"],
+        "photos": [
+            "https://roseray.com/cdn/shop/files/ANUA_Peach_70__Niacinamide_Serum.webp?v=1709596408",
+            "https://sukoshimart.com/cdn/shop/files/numbuzin-5-vitamin-concentrated-serum-main-2_1024x1024.png?v=1711399263",
+            "https://jundostudios.com/cdn/shop/products/somebymi_AHA_BHA_PHA_30_Days_Miracle_Toner__Korean_skincare_Korean_Beauty_Netherlands_2.webp?v=1669126931"
+        ],
+        "rating": "okay"
+    },
+    {
+        "id": 3,
+        "notes": "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+        "favorites": ["SKIN1004 Centella Asiatica"],
+        "photos": [
+            "https://roseray.com/cdn/shop/files/ANUA_Peach_70__Niacinamide_Serum.webp?v=1709596408",
+            "https://sukoshimart.com/cdn/shop/files/numbuzin-5-vitamin-concentrated-serum-main-2_1024x1024.png?v=1711399263",
+            "https://jundostudios.com/cdn/shop/products/somebymi_AHA_BHA_PHA_30_Days_Miracle_Toner__Korean_skincare_Korean_Beauty_Netherlands_2.webp?v=1669126931"
+        ],
+        "rating": "bad"
+    }
+]

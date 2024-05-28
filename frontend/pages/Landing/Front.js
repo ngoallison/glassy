@@ -19,20 +19,20 @@ const Front = ({ navigation }) => {
         <LargeIcon style={styles.photo}></LargeIcon>
         <View style={styles.contentArea}>
 
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 2 }}>
             <Text style={styles.title}>glassy</Text>
             <Text style={styles.smallDarkText}>for glowing skin you can be comfortable in.</Text>
           </View>
 
-          <View style={{ flex: 3, justifyContent: "center", gap: 30 }}>
+          <View style={{ flex: 2.5, justifyContent: "space-around", gap: 30 }}>
             <Button style="dark" func={() => navigation.navigate("Sign In Page")} label="Sign In"></Button>
             <Button style="light" func={() => navigation.navigate("Register Page")} label="Register"></Button>
           </View>
 
 
-          <View style={{ flex: 2, justifyContent: "space-around", }}>
+          <View style={{ flex: 3, justifyContent: "center", gap: 30, alignItems: "center" }}>
             <Text style={[styles.smallDarkText, { textAlign: "center" }]}>Or sign in with...</Text>
-            <View style={{ flexDirection: "row", gap: 50, alignItems: "center", justifyContent: "center", flex: 1 }}>
+            <View style={{ flexDirection: "row", gap: 50, alignItems: "center", justifyContent: "center" }}>
               {icons.map((item, index) => {
                 return (
                   <View key={index}>

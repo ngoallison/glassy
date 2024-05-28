@@ -55,13 +55,13 @@ const Register = ({ navigation }) => {
         <View style={[styles.contentArea]}>
 
           {/* Title component */}
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 2 }}>
             <Text style={styles.title}>glassy</Text>
             <Text style={styles.smallDarkText}>for glowing skin you can be comfortable in.</Text>
           </View>
 
           {/* Text inputs for registering account component */}
-          <View style={{ flex: 3, justifyContent: "space-evenly" }}>
+          <View style={{ flex: 4, justifyContent: "space-evenly" }}>
 
             <View>
               <TextInput
@@ -96,10 +96,12 @@ const Register = ({ navigation }) => {
             </View>
 
           </View>
+          <View style={{ flex: 1 }}>
+            <Button style="dark" func={handleSubmit} label="Register"></Button>
 
+          </View>
           {/* Register button to run error checks, pressable text to toggle between register and sign in page */}
           <View style={{ flex: 2, justifyContent: "space-around", }}>
-            <Button style="dark" func={handleSubmit} label="Register"></Button>
             <Text style={[styles.smallDarkText]}>
               Already have an account?
               <Text style={styles.boldText} onPress={() => navigation.navigate("Sign In Page")}> Sign in here.</Text>
