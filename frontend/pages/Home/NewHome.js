@@ -25,7 +25,7 @@ const NewHome = ({ navigation }) => {
                         <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
                             {(productData.slice(0, 4)).map((item, index) => {
                                 return (
-                                    <View style={{ flex: 1, margin: 10 }}>
+                                    <View key={index} style={{ flex: 1, margin: 10 }}>
                                         {
                                             item.photo ?
                                                 <Image style={{ width: "100%", height: undefined, aspectRatio: 1, borderRadius: 15 }} source={{ uri: item.photo }} ></Image> :
