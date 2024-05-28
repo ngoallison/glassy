@@ -7,10 +7,13 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 import productsData from "../../assets/data/products.json";
 import LongImageCard from "../../components/LongImageCard";
 import FloatingButton from "../../components/FloatingButton";
+import Button from "../../components/Button";
 
 
 const Routine = ({ navigation }) => {
     const days = ["S", "M", "T", "W", "T", "F", "S"]
+
+    const [mode, setMode] = useState("default");
 
     const [selectedTime, setSelectedTime] = useState("Morning");
     const [selectedDay, setSelectedDay] = useState(null); // State to track selected button
@@ -24,6 +27,10 @@ const Routine = ({ navigation }) => {
             setSelectedDay(index);
         }
     };
+
+    const handleEdit = (name) => {
+        setMode(name)
+    }
 
     const handleTimePress = (name) => {
         if (name == 'Morning') {
@@ -66,14 +73,27 @@ const Routine = ({ navigation }) => {
                         </Pressable>
                     ))}
                 </View>
+                {mode == "edit" ?
+                    <View style={{ flexDirection: "row", marginTop: 20 }}>
+                        <Button label="+ Add New Product"></Button>
+                        <Button label="Reorder"></Button>
+                    </View> : <></>
+                }
+
                 <FlatList
                     data={productsData}
                     renderItem={({ item }) => <LongImageCard side={true} item={item}></LongImageCard>}
-                    style={{ marginTop: 20, marginBottom: 60 }}
+                    style={{ marginTop: 20, marginBottom: mode == "edit" ? 0 : 60 }}
                 >
                 </FlatList>
             </View>
-            <FloatingButton label="Edit Routine"></FloatingButton>
+            {mode == "edit" ?
+                <View style={{ flex: 0.1, flexDirection: "row", marginBottom: 20, padding: 20, gap: 20, padding: 20 }}>
+                    <Button style="dark" func={() => handleEdit("default")} label="Remove"></Button>
+                    <Button style="dark" func={() => handleEdit("default")} label="Save"></Button>
+                </View> :
+                < FloatingButton onPress={() => handleEdit("edit")} label="Edit Routine"></FloatingButton>
+            }
         </View >
     );
 };
