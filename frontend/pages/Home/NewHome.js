@@ -29,7 +29,9 @@ const NewHome = ({ navigation }) => {
                                         {
                                             item.photo ?
                                                 <Image style={{ width: "100%", height: undefined, aspectRatio: 1, borderRadius: 15 }} source={{ uri: item.photo }} ></Image> :
-                                                <Ionicons name="leaf-outline" color="gray" size={40}></Ionicons>
+                                                <View style={{ backgroundColor: "gainsboro", borderRadius: 20, flex: 1, alignItems: "center", justifyContent: "center" }}>
+                                                    <Ionicons name="leaf-outline" color="gray" size={40}></Ionicons>
+                                                </View>
                                         }
                                     </View>
                                 );
