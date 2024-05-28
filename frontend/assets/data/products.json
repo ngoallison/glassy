@@ -65,6 +65,18 @@
     },
     {
         "id": 6,
+        "brand": "NEEDLY",
+        "name": "Toner Pads",
+        "category": "toner",
+        "price": "$$",
+        "rating": 4,
+        "features": {
+            "pros": ["Smooths Texture", "Lightweight"],
+            "cons": []
+        }
+    },
+    {
+        "id": 7,
         "brand": "numbuzin",
         "name": "No.5 Vitamin Serum",
         "category": "serum",
@@ -78,15 +90,17 @@
 
     },
     {
-        "id": 7,
-        "brand": "NEEDLY",
-        "name": "Toner Pads",
-        "category": "toner",
+        "id": 8,
+        "brand": "ANUA",
+        "name": "Niacinamide 10% + TXA",
+        "category": "serum",
         "price": "$$",
-        "rating": 4,
+        "rating": 5,
         "features": {
-            "pros": ["Smooths Texture", "Lightweight"],
-            "cons": []
-        }
+            "pros": ["Dark Spots", "Hyperpigmentation"],
+            "cons": ["Breakouts"]
+        },
+        "photo": "https://glownflowshop.com/cdn/shop/files/Anua_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30_mL_KBeauty_Australia-_aesthetic_photo__83152_aff5c076-ab16-4b0c-ac80-60ace57e712a.jpg?v=1712650480"
+
     }
 ]

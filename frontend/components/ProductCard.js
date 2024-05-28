@@ -25,8 +25,8 @@ const inStyle = StyleSheet.create({
         backgroundColor: "#D3EAF9",
         borderRadius: 15,
         alignItems: 'center',
-        height: 230,
-        width: 170,
+        height: 200,
+        width: 165,
     }
 })
 

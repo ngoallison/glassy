@@ -14,6 +14,7 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFonts } from "expo-font";
 import NavigationButtons from "./components/NavigationButtons";
+import NewHome from "./pages/Home/NewHome";
 
 
 const Stack = createNativeStackNavigator();
@@ -45,7 +46,7 @@ const App = () => {
             <Stack.Screen name="Survey Page" component={Survey} />
             <Stack.Screen name="Header Page" component={Header} />
             <Stack.Screen name="Main Page" component={Main} />
-            <Stack.Screen name="Home Page" component={Home} />
+            <Stack.Screen name="NewHome Page" component={NewHome} />
             <Stack.Screen name="Products Page" component={Products} />
             <Stack.Screen name="Modal Page" component={Modal} />
 

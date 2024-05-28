@@ -8,6 +8,7 @@ import Products from '../Products/Products';
 import Routine from '../Routine/Routine';
 import Progress from '../Progress/Progress';
 import Guides from '../Guides/Guides';
+import NewHome from './NewHome';
 
 const Drawer = createDrawerNavigator();
 
@@ -35,7 +36,7 @@ const Main = () => {
         }}
             drawerContent={props => <CustomDrawer {...props} />}
         >
-            <Drawer.Screen name="home" component={Home} />
+            <Drawer.Screen name="home" component={NewHome} />
             <Drawer.Screen name="products" component={Products} />
             <Drawer.Screen name="routine" component={Routine} />
             <Drawer.Screen name="progress" component={Progress} />
