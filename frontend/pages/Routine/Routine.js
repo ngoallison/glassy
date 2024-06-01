@@ -74,9 +74,9 @@ const Routine = ({ navigation }) => {
                     ))}
                 </View>
                 {mode == "edit" ?
-                    <View style={{ flexDirection: "row", marginTop: 20 }}>
-                        <Button label="+ Add New Product"></Button>
-                        <Button label="Reorder"></Button>
+                    <View style={{ flexDirection: "row", marginTop: 20, gap: 20 }}>
+                        <Button style="dark" label="+ Add New Product"></Button>
+                        <Button style="light" label="Reorder"></Button>
                     </View> : <></>
                 }
 

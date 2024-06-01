@@ -6,7 +6,7 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 const LongImageCard = (props) => {
     return (
         <Pressable onPress={props.onPress}>
-            <View style={{ marginBottom: 15, height: 100, backgroundColor: "white", borderRadius: 20, flexDirection: "row", alignItems: "center", padding: 10 }}>
+            <View style={{ borderWidth: 1, borderColor: "lightgray", marginBottom: 15, height: 100, backgroundColor: "white", borderRadius: 20, flexDirection: "row", alignItems: "center", padding: 10 }}>
                 <View style={{ flex: props.side ? 3 : 2, width: "100%", height: "100%", borderRadius: 15, backgroundColor: "gainsboro", justifyContent: "center", alignItems: "center" }}>
                     {props.item.photo ?
                         <Image style={{ width: "100%", height: "100%", borderRadius: 15 }} source={{ uri: props.item.photo }} ></Image> :
