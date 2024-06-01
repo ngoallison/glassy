@@ -9,11 +9,13 @@ const globalStyle = StyleSheet.create({
     background: {
         height: windowHeight,
         width: windowWidth,
-        backgroundColor: "#ECF7FE"
+        backgroundColor: "white"
+        // backgroundColor: "#ECF7FE"
     },
     container: {
         flex: 1,
-        backgroundColor: "#ECF7FE",
+        backgroundColor: "white",
+        // backgroundColor: "#ECF7FE",
         alignItems: "center",
         justifyContent: "center",
         padding: 50,
@@ -39,6 +41,14 @@ const globalStyle = StyleSheet.create({
         height: windowHeight * 0.05,
         borderWidth: 1,
         borderColor: "gray",
+        justifyContent: "center",
+    },
+    lightButton: {
+        flex: 1,
+        backgroundColor: "#EDF2F7",
+        borderRadius: 20,
+        padding: 10,
+        height: windowHeight * 0.05,
         justifyContent: "center",
     },
     solidButton: {

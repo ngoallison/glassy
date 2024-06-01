@@ -14,9 +14,9 @@ const Routine = ({ navigation }) => {
     const days = ["S", "M", "T", "W", "T", "F", "S"]
 
     const [mode, setMode] = useState("default");
-
-    const [selectedTime, setSelectedTime] = useState("Morning");
-    const [selectedDay, setSelectedDay] = useState(null); // State to track selected button
+    const d = new Date();
+    const [selectedTime, setSelectedTime] = useState(d.getHours() < 17 && d.getHours() > 5 ? "Morning" : "Night");
+    const [selectedDay, setSelectedDay] = useState(d.getDay()); // State to track selected button
 
     const handleButtonPress = (index) => {
         if (index === selectedDay) {
@@ -49,14 +49,14 @@ const Routine = ({ navigation }) => {
                     <Pressable
                         id="Morning"
                         onPress={() => handleTimePress("Morning")}
-                        style={[selectedTime == "Morning" ? styles.solidButton : styles.clearButton, { flex: 1, flexDirection: "row", gap: 10 }]}>
+                        style={[selectedTime == "Morning" ? styles.solidButton : styles.lightButton, { flex: 1, flexDirection: "row", gap: 10 }]}>
                         <Ionicons size={20} color={selectedTime == "Morning" ? "#FFFFFF" : "#3A405A"} name="sunny-outline"></Ionicons>
                         <Text style={[styles.boldText, { color: selectedTime == "Morning" ? "#FFFFFF" : "#3A405A" }]}>Morning</Text>
                     </Pressable>
                     <Pressable
                         id="Night"
                         onPress={() => handleTimePress("Night")}
-                        style={[selectedTime == "Night" ? styles.solidButton : styles.clearButton, { flex: 1, flexDirection: "row", gap: 10 }]}>
+                        style={[selectedTime == "Night" ? styles.solidButton : styles.lightButton, { flex: 1, flexDirection: "row", gap: 10 }]}>
                         <Ionicons size={20} color={selectedTime == "Night" ? "#FFFFFF" : "#3A405A"} name="moon-outline"></Ionicons>
                         <Text style={[styles.boldText, { color: selectedTime == "Night" ? "#FFFFFF" : "#3A405A" }]}>Night</Text>
                     </Pressable>

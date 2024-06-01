@@ -33,7 +33,7 @@ const Products = ({ navigation }) => {
         <View style={[styles.background]}>
             <Header name="Products" func={() => { navigation.openDrawer() }}></Header>
             <View style={{ flex: 1, padding: 20 }}>
-                <View style={{ flexDirection: "row", backgroundColor: "#CEDEED", borderRadius: 15, width: "100%", height: 35, alignItems: "center", paddingLeft: 10, gap: 10, borderColor: "#91ABCB", borderWidth: 1 }}>
+                <View style={{ flexDirection: "row", backgroundColor: "#EDF2F7", borderRadius: 15, width: "100%", height: 35, alignItems: "center", paddingLeft: 10, gap: 10, borderColor: "#91ABCB", borderWidth: 1 }}>
                     <Ionicons size={22} name="search" color="gray"></Ionicons>
                     <TextInput
                         onChangeText={onChangeText}

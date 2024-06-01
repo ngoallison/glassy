@@ -17,9 +17,15 @@ const NewHome = ({ navigation }) => {
     return (
         <View style={styles.background}>
             <Header name="Home" func={() => { navigation.openDrawer() }}></Header>
-            <View style={{ padding: 20, flex: 1 }}>
+            <View style={{ padding: 20, flex: 1, gap: 30 }}>
                 <View style={{ flex: 2 }}>
-                    <Text style={[styles.boldText, { textAlign: "left" }]}>Today's Routine</Text>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+
+                        <Text style={[styles.boldText, { textAlign: "left" }]}>Today's Routine</Text>
+                        <Pressable style={{ padding: 5 }}>
+                            <Text style={styles.lightText}>View Routine</Text>
+                        </Pressable>
+                    </View>
                     <View style={{ flex: 1, marginVertical: 10, borderWidth: 1, borderRadius: 10, borderColor: "lightgray" }}>
                         <Text style={[styles.boldText, { textAlign: "left", padding: 10 }]}>Monday Morning</Text>
                         <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
@@ -42,7 +48,7 @@ const NewHome = ({ navigation }) => {
                 <View style={{ flex: 3 }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                         <Text style={[styles.boldText, { textAlign: "left" }]}>Recently Added Products</Text>
-                        <Pressable style={{ padding: 5, paddingHorizontal: 10, borderWidth: 1, borderRadius: 20 }}>
+                        <Pressable style={{ padding: 5 }}>
                             <Text style={styles.lightText}>View All</Text>
                         </Pressable>
                     </View>
@@ -58,7 +64,7 @@ const NewHome = ({ navigation }) => {
                 </View>
                 <View style={{ flex: 3 }}>
                     <Text style={[styles.boldText, { textAlign: "left" }]}>Progress Chart</Text>
-                    <View style={{ flex: 1, marginVertical: 20, borderWidth: 1, borderRadius: 20, borderColor: "lightgray" }}></View>
+                    <View style={{ flex: 1, marginVertical: 20, borderWidth: 1, borderRadius: 20, borderColor: "lightgray", backgroundColor: "gray" }}></View>
                 </View>
             </View>
         </View >

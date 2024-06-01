@@ -1,5 +1,5 @@
 import { Text, View, TextInput } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import LargeIcon from "../../components/LargeIcon";
 import Button from "../../components/Button";
 import styles from "./styles";
@@ -7,29 +7,37 @@ import styles from "./styles";
 const SignIn = ({ navigation }) => {
 
   // State checkers for user input
-  const [text, onChangeText] = React.useState("");
-  const [pass, onChangePass] = React.useState("");
+  const [text, onChangeText] = useState("");
+  const [pass, onChangePass] = useState("");
 
-  const [textError, setTextError] = React.useState(false);
-  const [passError, setPassError] = React.useState(false);
+  const [errors, setErrors] = useState({ username: false, password: false });
+
 
   // Error checking, disallow empty input fields
-  const handleSubmit = () => {
-    if (text.length == 0) {
-      setTextError(true);
-    }
-    else {
-      setTextError(false);
+  const validate = () => {
+    let valid = true;
+    let errors = {}
+
+    if (text.length === 0) {
+      errors.username = "* Required Field";
+      valid = false
     }
 
-    if (pass.length == 0) {
-      setPassError(true);
+    if (pass.length === 0) {
+      errors.password = "* Required Field";
+      valid = false
     }
-    else {
-      setPassError(false);
-    }
+
+    setErrors(errors);
+    return valid;
 
   }
+
+  const handleSubmit = () => {
+    if (validate()) {
+      navigation.navigate("Main Page")
+    }
+  };
 
   return (
     <View style={styles.background}>
@@ -49,22 +57,22 @@ const SignIn = ({ navigation }) => {
 
             <View>
               <TextInput
-                style={[styles.input, textError ? { borderColor: "red" } : {}]}
+                style={[styles.input, errors.username ? { borderColor: "red" } : {}]}
                 onChangeText={onChangeText}
                 placeholder="Email"
                 value={text}
               />
-              {textError ? <Text style={{ color: "red", fontSize: 10 }}>* Required Field</Text> : <></>}
+              <Text style={{ color: "red", fontSize: 10 }}>{errors.password}</Text>
             </View>
 
             <View>
               <TextInput
-                style={[styles.input, passError ? { borderColor: "red" } : {}]}
+                style={[styles.input, errors.password ? { borderColor: "red" } : {}]}
                 onChangeText={onChangePass}
                 secureTextEntry={true}
                 placeholder="Password"
               />
-              {passError ? <Text style={{ color: "red", fontSize: 10 }}>* Required Field</Text> : <></>}
+              <Text style={{ color: "red", fontSize: 10 }}>{errors.password}</Text>
               <Text style={[styles.boldText, { textAlign: "right", marginTop: 10 }]}>forgot password?</Text>
             </View>
 
