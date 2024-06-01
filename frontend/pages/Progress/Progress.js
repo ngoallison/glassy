@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
 import Header from '../Home/Header';
 import styles from '../../styles';
@@ -6,6 +6,10 @@ import progressData from "../../assets/data/progress.json";
 import Ionicons from "react-native-vector-icons/Ionicons"
 import FloatingButton from '../../components/FloatingButton';
 import Button from '../../components/Button';
+import Modal from "../../components/Modal";
+import BottomSheet from '@gorhom/bottom-sheet';
+import ProgressModal from './ProgressModal';
+
 const Progress = ({ navigation }) => {
     const [selected, setSelected] = useState("checkin")
 
@@ -13,10 +17,14 @@ const Progress = ({ navigation }) => {
         setSelected(label);
     }
 
+    const bottomSheetRef = useRef(<BottomSheet></BottomSheet>);
+    const handleOpenPress = () => bottomSheetRef.current?.expand();
+    const handleClosePress = () => bottomSheetRef.current?.close();
+
     return (
         <View style={styles.background}>
             <Header name="Guides" func={() => { navigation.openDrawer() }}></Header>
-            <View style={{ flexDirection: "row", padding: 20 }}>
+            <View style={{ flexDirection: "row", padding: 20, gap: 10 }}>
                 <Button style={selected == "checkin" ? "dark" : ""} label="check-in" func={() => handleSelect("checkin")}></Button>
                 <Button style={selected == "gallery" ? "dark" : ""} label="gallery" func={() => handleSelect("gallery")}></Button>
             </View>
@@ -27,7 +35,9 @@ const Progress = ({ navigation }) => {
                 >
                 </FlatList>
             </View>
-            <FloatingButton onPress={() => { }} label="+ Add Check-in"></FloatingButton>
+            <FloatingButton onPress={handleOpenPress} label="+ Add Check-in"></FloatingButton>
+            <Modal bottomSheetRef={bottomSheetRef} component={<ProgressModal handleClosePress={handleClosePress}></ProgressModal>}></Modal>
+
         </View >
     );
 }
@@ -40,8 +50,8 @@ const ProgressCard = (props) => {
     }
     return (
         <Pressable style={{ gap: 5, marginTop: 10 }}>
-            <Text style={[styles.lightText, { textAlign: "left" }]}>sunday</Text>
-            <View style={{ marginBottom: 15, height: 80, backgroundColor: "white", borderRadius: 15, flexDirection: "row", alignItems: "center", padding: 10 }}>
+            <Text style={[styles.boldText, { textAlign: "left" }]}>sunday</Text>
+            <View style={{ borderWidth: 1, borderColor: "lightgray", marginBottom: 15, height: 80, backgroundColor: "white", borderRadius: 15, flexDirection: "row", alignItems: "center", padding: 10 }}>
                 <View style={{ flex: 1, justifyContent: "center", flexDirection: "row" }}>
                     <View style={{ gap: 15, alignItems: "center", justifyContent: "space-around" }}>
                         <Ionicons name={icons[props.item.rating]} color="#3A405A" size={20}></Ionicons>

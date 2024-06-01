@@ -74,7 +74,7 @@ const Routine = ({ navigation }) => {
                     ))}
                 </View>
                 {mode == "edit" ?
-                    <View style={{ flexDirection: "row", marginTop: 20, gap: 20 }}>
+                    <View style={{ flexDirection: "row", marginVertical: 30, gap: 20 }}>
                         <Button style="dark" label="+ Add New Product"></Button>
                         <Button style="light" label="Reorder"></Button>
                     </View> : <></>
@@ -83,7 +83,7 @@ const Routine = ({ navigation }) => {
                 <FlatList
                     data={productsData}
                     renderItem={({ item }) => <LongImageCard side={true} item={item}></LongImageCard>}
-                    style={{ marginTop: 20, marginBottom: mode == "edit" ? 0 : 60 }}
+                    style={{ marginBottom: mode == "edit" ? 0 : 60 }}
                 >
                 </FlatList>
             </View>

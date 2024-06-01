@@ -36,7 +36,7 @@ const globalStyle = StyleSheet.create({
     clearButton: {
         flex: 1,
         backgroundColor: "#FFFFFF",
-        borderRadius: 20,
+        borderRadius: 15,
         padding: 10,
         height: windowHeight * 0.05,
         borderWidth: 1,
@@ -46,7 +46,7 @@ const globalStyle = StyleSheet.create({
     lightButton: {
         flex: 1,
         backgroundColor: "#EDF2F7",
-        borderRadius: 20,
+        borderRadius: 15,
         padding: 10,
         height: windowHeight * 0.05,
         justifyContent: "center",
@@ -54,7 +54,7 @@ const globalStyle = StyleSheet.create({
     solidButton: {
         flex: 1,
         height: windowHeight * 0.05,
-        borderRadius: 20,
+        borderRadius: 15,
         padding: 10,
         backgroundColor: "#3A405A",
         justifyContent: "center",
