@@ -18,6 +18,7 @@ const Products = ({ navigation }) => {
 
     const bottomSheetRef = useRef(<BottomSheet></BottomSheet>);
     const handleOpenPress = () => bottomSheetRef.current?.expand();
+    const handleClosePress = () => bottomSheetRef.current?.close();
 
     const renderItem = ({ item }) => {
         <View style={inStyle.product}>
@@ -58,7 +59,7 @@ const Products = ({ navigation }) => {
                 </View>
             </View>
             <FloatingButton label="+ Add Product" onPress={handleOpenPress}></FloatingButton>
-            <Modal bottomSheetRef={bottomSheetRef} component={<AddModal></AddModal>}></Modal>
+            <Modal bottomSheetRef={bottomSheetRef} component={<AddModal handleClosePress={handleClosePress}></AddModal>}></Modal>
         </View >
     );
 };

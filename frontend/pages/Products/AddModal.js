@@ -7,12 +7,21 @@ import Button from '../../components/Button';
 import Ionicons from "react-native-vector-icons/Ionicons"
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import Tag from '../../components/Tag';
+import React, { useState } from 'react';
 
 const windowHeight = Dimensions.get("window").height;
 
-const AddModal = () => {
+const AddModal = ({ handleClosePress }) => {
     const pros = ["Dark Spots", "Exfoliating", "Lightweight"];
     const cons = ["Fragrance", "Purging"]
+
+
+    const [brand, onChangeBrand] = useState("");
+
+    const handleClear = () => {
+        onChangeBrand("");
+        handleClosePress();
+    }
 
     return (
         <View>
@@ -20,7 +29,12 @@ const AddModal = () => {
                 <Text style={styles.headerSans}>Add a Product</Text>
                 <View>
                     <Text style={[styles.lightText, { textAlign: "left" }]}>Product Brand</Text>
-                    <TextInput style={styles.inputSoft} placeholder="Round Lab..."></TextInput>
+                    <TextInput
+                        style={styles.inputSoft}
+                        placeholder="Round Lab..."
+                        onChange={onChangeBrand}
+                        value={brand}
+                    ></TextInput>
                 </View>
                 <View>
                     <Text style={[styles.lightText, { textAlign: "left" }]}>Product Name</Text>
@@ -69,7 +83,7 @@ const AddModal = () => {
             </View >
             <View style={{ flexDirection: "row", gap: 20 }}>
                 <Button label="Add Photo" onPress={() => { }}></Button>
-                <Button style="dark" label="Add Product" onPress={() => { }}></Button>
+                <Button style="dark" label="Add Product" func={handleClear}></Button>
             </View>
         </View >
 
