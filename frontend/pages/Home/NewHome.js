@@ -12,13 +12,13 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 
 const NewHome = ({ navigation }) => {
 
-    const newProducts = productData.slice(Math.max(productData.length - 2, 0))
+    const newProducts = productData.slice(productData.length - 3)
 
     return (
         <View style={styles.background}>
             <Header name="Home" func={() => { navigation.openDrawer() }}></Header>
-            <View style={{ padding: 20, flex: 1, gap: 30 }}>
-                <View style={{ flex: 2 }}>
+            <View style={{ padding: 20, flex: 1, gap: 20, marginBottom: 20 }}>
+                <View style={{ flex: 2.2 }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
 
                         <Text style={[styles.boldText, { textAlign: "left" }]}>Today's Routine</Text>
@@ -45,18 +45,18 @@ const NewHome = ({ navigation }) => {
                         </View>
                     </View>
                 </View>
-                <View style={{ flex: 3 }}>
+                <View style={{ flex: 2.5 }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                         <Text style={[styles.boldText, { textAlign: "left" }]}>Recently Added Products</Text>
                         <Pressable style={{ padding: 5 }}>
                             <Text style={styles.lightText}>View All</Text>
                         </Pressable>
                     </View>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15 }}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15, gap: 15 }}>
                         {newProducts.map((item, index) => {
                             return (
-                                <View key={index}>
-                                    <ProductCard item={item}></ProductCard>
+                                <View style={{ flex: 1 }} key={index}>
+                                    <ProductCard style="small" item={item}></ProductCard>
                                 </View>
                             );
                         })}

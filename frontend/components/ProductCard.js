@@ -5,7 +5,7 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 
 const ProductCard = (props) => {
     return (
-        <View style={inStyle.product}>
+        <View style={props.style == "small" ? inStyle.smallCard : inStyle.product}>
             <View style={{ width: "100%", height: "70%", borderTopLeftRadius: 15, borderTopRightRadius: 15, backgroundColor: "gainsboro", justifyContent: "center", alignItems: "center" }}>
                 {props.item.photo ?
                     <Image style={{ width: "100%", height: "100%", borderRadius: 15 }} source={{ uri: props.item.photo }} ></Image> :
@@ -13,8 +13,8 @@ const ProductCard = (props) => {
                 }
             </View>
             <View style={{ flex: 1, width: "100%", padding: 10, justifyContent: "center" }}>
-                <Text style={[styles.header, { textAlign: "left", fontSize: 18 }]}>{props.item.brand}</Text>
-                <Text style={[styles.lightText, { textAlign: "left", fontSize: 14 }]} numberOfLines={1}>{props.item.name}</Text>
+                <Text style={[styles.header, { textAlign: "left", fontSize: props.style == "small" ? 13 : 18 }]}>{props.item.brand}</Text>
+                <Text style={[styles.lightText, { textAlign: "left", fontSize: props.style == "small" ? 12 : 14 }]} numberOfLines={1}>{props.item.name}</Text>
             </View>
         </View>
     );
@@ -27,6 +27,12 @@ const inStyle = StyleSheet.create({
         alignItems: 'center',
         height: 200,
         width: 165,
+    },
+    smallCard: {
+        marginBottom: 20,
+        backgroundColor: "#D3EAF9",
+        borderRadius: 15,
+        alignItems: 'center',
     }
 })
 
