@@ -16,6 +16,7 @@ const ProgressModal = ({ handleClosePress, fetchProgress }) => {
     const date = format(today, 'EEEE, MMMM d, yyyy');
     const ratings = ["good", "okay", "bad"];
 
+    const [error, setError] = useState("");
     const [notes, setNotes] = useState("");
     const [selected, setSelected] = useState(null);
 
@@ -31,7 +32,6 @@ const ProgressModal = ({ handleClosePress, fetchProgress }) => {
 
     const handleAdd = async () => {
         try {
-            console.log("trying to add progress log");
             const rating = ratings[selected];
             const token = await AsyncStorage.getItem('token');
             if (!token) {
@@ -51,19 +51,32 @@ const ProgressModal = ({ handleClosePress, fetchProgress }) => {
     }
 
     const handleClear = () => {
+        setSelected(null);
+        setNotes("");
+    }
+
+    const handleError = () => {
+        if (!selected) {
+            setError("* This is a required")
+            return false;
+        }
+        setError("");
+        return true;
     }
 
     const handleSubmit = async () => {
-        try {
-            const addSuccess = await handleAdd();
-            if (addSuccess) {
-                handleClear();
-                handleClosePress();
-                fetchProgress();
+        if (handleError()) {
+            try {
+                const addSuccess = await handleAdd();
+                if (addSuccess) {
+                    handleClear();
+                    handleClosePress();
+                    fetchProgress();
+                }
+            } catch (error) {
+                // Ensure to reset the flag regardless of registration success or failure
+                console.log(error);
             }
-        } catch (error) {
-            // Ensure to reset the flag regardless of registration success or failure
-            console.log(error);
         }
     }
 
@@ -84,7 +97,7 @@ const ProgressModal = ({ handleClosePress, fetchProgress }) => {
                     </View>
                     <View style={{ flex: 2 }}>
                         <Text style={[styles.boldText, { textAlign: "left" }]}>How is your skin's condition?</Text>
-
+                        <Text style={{ color: "red", fontSize: 10 }}>{error}</Text>
                         <View style={{ flexDirection: "row", marginVertical: 30, justifyContent: "space-around", gap: 20 }}>
                             {icons.map((icon, index) => {
                                 return (

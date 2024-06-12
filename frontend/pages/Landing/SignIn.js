@@ -37,11 +37,9 @@ const SignIn = ({ navigation }) => {
   }
 
   const signin = async () => {
-    console.log("trying to post");
     try {
       const response = await axios.post('http://localhost:3000/users/login', { email, password });
       const jwtToken = response.data.jwtToken;
-      console.log(response.data);
       await AsyncStorage.setItem('token', jwtToken);
       return true;
     } catch (error) {
@@ -58,7 +56,6 @@ const SignIn = ({ navigation }) => {
 
         const signInSuccess = await signin();
         if (signInSuccess) {
-          console.log("successfully logged in!")
           navigation.navigate('Main Page');  // Replace 'NextPage' with your target page
         }
       } catch (error) {
