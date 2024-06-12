@@ -61,7 +61,7 @@ const Routine = ({ navigation }) => {
                         <Text style={[styles.boldText, { color: selectedTime == "Night" ? "#FFFFFF" : "#3A405A" }]}>Night</Text>
                     </Pressable>
                 </View>
-                <View style={{ paddingTop: 20, flexDirection: "row", justifyContent: "space-between" }}>
+                <View style={{ paddingTop: 20, flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>
                     {days.map((day, index) => (
                         <Pressable
                             key={index}

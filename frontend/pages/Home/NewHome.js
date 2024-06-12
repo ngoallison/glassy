@@ -64,7 +64,7 @@ const NewHome = ({ navigation }) => {
                 </View>
                 <View style={{ flex: 3 }}>
                     <Text style={[styles.boldText, { textAlign: "left" }]}>Progress Chart</Text>
-                    <View style={{ flex: 1, marginVertical: 20, borderWidth: 1, borderRadius: 20, borderColor: "lightgray", backgroundColor: "gray" }}></View>
+                    <View style={{ flex: 1, marginVertical: 20, borderWidth: 1, borderRadius: 20, borderColor: "gainsboro", backgroundColor: "gainsboro" }}></View>
                 </View>
             </View>
         </View >
