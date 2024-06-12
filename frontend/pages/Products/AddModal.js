@@ -1,13 +1,11 @@
-import { StyleSheet, View, Text, Dimensions, TextInput } from 'react-native';
-import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import dry from "../../assets/icons/dry-skin.png"
+import { View, Text, Dimensions, TextInput } from 'react-native';
 import styles from '../../styles';
-import { skinTypes } from '../../Constants'
 import Button from '../../components/Button';
-import Ionicons from "react-native-vector-icons/Ionicons"
-import { Rating, AirbnbRating } from 'react-native-ratings';
+import { Rating } from 'react-native-ratings';
 import Tag from '../../components/Tag';
 import React, { useState } from 'react';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowHeight = Dimensions.get("window").height;
 
@@ -15,12 +13,47 @@ const AddModal = ({ handleClosePress }) => {
     const pros = ["Dark Spots", "Exfoliating", "Lightweight"];
     const cons = ["Fragrance", "Purging"]
 
-
+    const [rating, setRating] = useState(0);
+    const [name, onChangeName] = useState("");
     const [brand, onChangeBrand] = useState("");
+    const [category, onChangeCategory] = useState("");
+    const [price, onChangePrice] = useState("");
 
-    const handleClear = () => {
-        onChangeBrand("");
-        handleClosePress();
+    const ratingCompleted = (rating) => {
+        console.log("Rating is: " + rating);
+        setRating(rating);
+    };
+
+    const handleAdd = async () => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            if (!token) {
+                setError('User not authenticated');
+                setLoading(false);
+                return;
+            }
+            const response = await axios.post('http://localhost:3000/products/add', { name, brand, category, price, rating }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            // Handle the response as needed
+            return true;
+        } catch (error) {
+            console.error('Error:', error);
+            return false;
+            // Handle errors
+        }
+    }
+
+    const handleClear = async () => {
+        try {
+            const addSuccess = await handleAdd();
+            if (addSuccess) {
+                handleClosePress();
+            }
+        } catch (error) {
+            // Ensure to reset the flag regardless of registration success or failure
+            console.log(error);
+        }
     }
 
     return (
@@ -32,22 +65,37 @@ const AddModal = ({ handleClosePress }) => {
                     <TextInput
                         style={styles.inputSoft}
                         placeholder="Round Lab..."
-                        onChange={onChangeBrand}
+                        onChangeText={onChangeBrand}
                         value={brand}
                     ></TextInput>
                 </View>
                 <View>
                     <Text style={[styles.lightText, { textAlign: "left" }]}>Product Name</Text>
-                    <TextInput style={styles.inputSoft} placeholder="Birch Juice Sunscreen..."></TextInput>
+                    <TextInput
+                        style={styles.inputSoft}
+                        placeholder="Birch Juice Sunscreen..."
+                        onChangeText={onChangeName}
+                        value={name}
+                    ></TextInput>
                 </View>
                 <View style={{ flexDirection: "row", gap: 20 }}>
                     <View style={{ flex: 1 }}>
                         <Text style={[styles.lightText, { textAlign: "left" }]}>Product Category</Text>
-                        <TextInput style={styles.inputSoft} placeholder="Sunscreen..."></TextInput>
+                        <TextInput
+                            style={styles.inputSoft}
+                            placeholder="Sunscreen..."
+                            onChangeText={onChangeCategory}
+                            value={category}
+                        ></TextInput>
                     </View>
                     <View style={{ flex: 1 }}>
                         <Text style={[styles.lightText, { textAlign: "left" }]}>Price Range</Text>
-                        <TextInput style={styles.inputSoft} placeholder="$$"></TextInput>
+                        <TextInput
+                            style={styles.inputSoft}
+                            placeholder="$$"
+                            onChangeText={onChangePrice}
+                            value={price}
+                        ></TextInput>
                     </View>
                 </View>
                 <View>
@@ -57,7 +105,7 @@ const AddModal = ({ handleClosePress }) => {
                         ratingCount={5}
                         startingValue={1}
                         imageSize={40}
-                        onFinishRating={this.ratingCompleted}
+                        onFinishRating={ratingCompleted}
                         style={{ alignItems: "left", marginTop: 10 }}
                     />
                 </View>
