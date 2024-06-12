@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
+const progressRouter = require('./routes/progress');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +12,8 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
+app.use('/progress', progressRouter);
+
 
 console.log('Starting Express server...');
 
