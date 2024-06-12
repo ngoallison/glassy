@@ -6,7 +6,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import productsData from "../../assets/data/products.json";
+// import productsData from "../../assets/data/products.json";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ProductCard from "../../components/ProductCard";
 import FloatingButton from "../../components/FloatingButton";
