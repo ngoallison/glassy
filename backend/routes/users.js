@@ -4,6 +4,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../database/index.js');
+const jwtGenerator = require("../utils/jwtGenerator");
+const authorize = require("../middleware/authorize");
 
 /*
 Request type: GET
@@ -11,7 +13,7 @@ Function: Get current users
 */
 router.get('/get', async (req, res) => {
     try {
-        const { rows } = await db.query('SELECT email FROM users');
+        const { rows } = await db.query('SELECT email FROM public."Users"');
 
         // Print the fetched data to the console
         console.log(rows);
@@ -32,7 +34,7 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
         const result = await db.query(
-            'SELECT * FROM users WHERE email = $1',
+            'SELECT * FROM public."Users" WHERE email = $1',
             [email]
         );
         const user = result.rows[0];
@@ -43,8 +45,8 @@ router.post('/login', async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ error: 'Invalid credentials' });
         }
-        const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
-        res.json({ token });
+        const jwtToken = jwtGenerator(user.id);
+        res.status(201).json({ message: { jwtToken } });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -59,12 +61,11 @@ router.post('/register', async (req, res) => {
     const { email, phone, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 8);
     try {
-        const query = 'INSERT INTO users (email, phone, password) VALUES ($1, $2, $3) RETURNING *';
+        const query = 'INSERT INTO public."Users" (email, phone, password) VALUES ($1, $2, $3) RETURNING *';
         console.log('Register query:', query);  // Add this line
         const newUser = await db.query(query, [email, phone, hashedPassword]);
-
-        const token = jwt.sign({ id: newUser.rows[0].user_id }, 'your_jwt_secret', { expiresIn: '1h' });
-        res.status(201).json({ email, token });
+        const jwtToken = jwtGenerator(newUser.rows[0].id);
+        res.status(201).json({ email, jwtToken });
 
         // res.status(201).json({ message: 'woo!' });
 
@@ -80,7 +81,7 @@ const authMiddleware = (req, res, next) => {
         return res.status(401).json({ error: 'Unauthorized' });
     }
     try {
-        const decoded = jwt.verify(token, 'your_jwt_secret');
+        const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
         req.userId = decoded.id;
         next();
     } catch (error) {

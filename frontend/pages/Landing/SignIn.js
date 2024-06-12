@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import LargeIcon from "../../components/LargeIcon";
 import Button from "../../components/Button";
 import styles from "./styles";
+import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
 
 const SignIn = ({ navigation }) => {
 
   // State checkers for user input
-  const [text, onChangeText] = useState("");
-  const [pass, onChangePass] = useState("");
+  const [email, onChangeEmail] = useState("");
+  const [password, onChangePassword] = useState("");
 
   const [errors, setErrors] = useState({ username: false, password: false });
 
@@ -18,12 +20,12 @@ const SignIn = ({ navigation }) => {
     let valid = true;
     let errors = {}
 
-    if (text.length === 0) {
+    if (email.length === 0) {
       errors.username = "* Required Field";
       valid = false
     }
 
-    if (pass.length === 0) {
+    if (password.length === 0) {
       errors.password = "* Required Field";
       valid = false
     }
@@ -33,9 +35,32 @@ const SignIn = ({ navigation }) => {
 
   }
 
-  const handleSubmit = () => {
+  const signin = async () => {
+    console.log("trying to post");
+    try {
+      const response = await axios.post('http://localhost:3000/users/login', { email, password });
+      // Handle the response as needed
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+      // Handle errors
+    }
+  }
+
+  const handleSubmit = async () => {
     if (validate()) {
-      navigation.navigate("Main Page")
+      try {
+        // Set a flag to indicate registration is in progress
+
+        const signInSuccess = await signin();
+        if (signInSuccess) {
+          console.log("successfully logged in!")
+          navigation.navigate('Main Page');  // Replace 'NextPage' with your target page
+        }
+      } catch (error) {
+        console.log({ error });
+      }
     }
   };
 
@@ -58,9 +83,9 @@ const SignIn = ({ navigation }) => {
             <View>
               <TextInput
                 style={[styles.input, errors.username ? { borderColor: "red" } : {}]}
-                onChangeText={onChangeText}
+                onChangeText={onChangeEmail}
                 placeholder="Email"
-                value={text}
+                value={email}
               />
               <Text style={{ color: "red", fontSize: 10 }}>{errors.password}</Text>
             </View>
@@ -68,7 +93,7 @@ const SignIn = ({ navigation }) => {
             <View>
               <TextInput
                 style={[styles.input, errors.password ? { borderColor: "red" } : {}]}
-                onChangeText={onChangePass}
+                onChangeText={onChangePassword}
                 secureTextEntry={true}
                 placeholder="Password"
               />

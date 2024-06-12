@@ -39,25 +39,6 @@ const Register = ({ navigation }) => {
     return valid;
 
   }
-
-  // const register = async () => {
-  //   try {
-  //     console.log("registering");
-  //     const response = await axios
-  //       .post('http://localhost:3000/users/register', { username, phone, password })
-  //       .then((res => console.log(res))
-  //         .catch((err) => console.log(err)));
-  //     console.log("done registering");
-  //     await SecureStore.setItemAsync('token', response.data.token);
-  //     console.log("done awaiting");
-  //     return true;
-  //     // setMessage('User registered successfully');
-  //   } catch (error) {
-  //     return false;
-  //     // setMessage('Registration failed');
-  //   }
-  // }
-
   const register = async () => {
     console.log("trying to post");
     try {
