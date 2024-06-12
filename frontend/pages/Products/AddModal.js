@@ -8,16 +8,23 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowHeight = Dimensions.get("window").height;
+const initialState = {
+    name: "",
+    brand: "",
+    category: "",
+    price: "",
+    rating: 0,
+}
 
 const AddModal = ({ handleClosePress }) => {
     const pros = ["Dark Spots", "Exfoliating", "Lightweight"];
     const cons = ["Fragrance", "Purging"]
 
+    const [name, setName] = useState("");
+    const [brand, setBrand] = useState("");
+    const [category, setCategory] = useState("");
+    const [price, setPrice] = useState("");
     const [rating, setRating] = useState(0);
-    const [name, onChangeName] = useState("");
-    const [brand, onChangeBrand] = useState("");
-    const [category, onChangeCategory] = useState("");
-    const [price, onChangePrice] = useState("");
 
     const ratingCompleted = (rating) => {
         console.log("Rating is: " + rating);
@@ -44,10 +51,19 @@ const AddModal = ({ handleClosePress }) => {
         }
     }
 
-    const handleClear = async () => {
+    const handleClear = () => {
+        setBrand('');
+        setName('');
+        setCategory('');
+        setPrice('');
+        setRating(0);
+    }
+
+    const handleSubmit = async () => {
         try {
             const addSuccess = await handleAdd();
             if (addSuccess) {
+                handleClear();
                 handleClosePress();
             }
         } catch (error) {
@@ -65,7 +81,7 @@ const AddModal = ({ handleClosePress }) => {
                     <TextInput
                         style={styles.inputSoft}
                         placeholder="Round Lab..."
-                        onChangeText={onChangeBrand}
+                        onChangeText={setBrand}
                         value={brand}
                     ></TextInput>
                 </View>
@@ -74,7 +90,7 @@ const AddModal = ({ handleClosePress }) => {
                     <TextInput
                         style={styles.inputSoft}
                         placeholder="Birch Juice Sunscreen..."
-                        onChangeText={onChangeName}
+                        onChangeText={setName}
                         value={name}
                     ></TextInput>
                 </View>
@@ -84,7 +100,7 @@ const AddModal = ({ handleClosePress }) => {
                         <TextInput
                             style={styles.inputSoft}
                             placeholder="Sunscreen..."
-                            onChangeText={onChangeCategory}
+                            onChangeText={setCategory}
                             value={category}
                         ></TextInput>
                     </View>
@@ -93,7 +109,7 @@ const AddModal = ({ handleClosePress }) => {
                         <TextInput
                             style={styles.inputSoft}
                             placeholder="$$"
-                            onChangeText={onChangePrice}
+                            onChangeText={setPrice}
                             value={price}
                         ></TextInput>
                     </View>
@@ -131,7 +147,7 @@ const AddModal = ({ handleClosePress }) => {
             </View >
             <View style={{ flexDirection: "row", gap: 20 }}>
                 <Button label="Add Photo" onPress={() => { }}></Button>
-                <Button style="dark" label="Add Product" func={handleClear}></Button>
+                <Button style="dark" label="Add Product" func={handleSubmit}></Button>
             </View>
         </View >
 
