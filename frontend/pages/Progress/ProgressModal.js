@@ -1,19 +1,21 @@
 import { StyleSheet, View, Text, Dimensions, TextInput, Pressable } from 'react-native';
-import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import dry from "../../assets/icons/dry-skin.png"
 import styles from '../../styles';
-import { skinTypes } from '../../Constants'
 import Button from '../../components/Button';
 import Ionicons from "react-native-vector-icons/Ionicons"
-import { Rating, AirbnbRating } from 'react-native-ratings';
 import Tag from '../../components/Tag';
 import React, { useState } from 'react';
+import { format } from 'date-fns';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowHeight = Dimensions.get("window").height;
 
-const ProgressModal = ({ handleClosePress }) => {
+const ProgressModal = ({ handleClosePress, fetchProgress }) => {
 
     const today = new Date(Date.now());
+    const date = format(today, 'EEEE, MMMM d, yyyy');
+    const ratings = ["good", "okay", "bad"];
+
     const [notes, setNotes] = useState("");
     const [selected, setSelected] = useState(null);
 
@@ -27,9 +29,42 @@ const ProgressModal = ({ handleClosePress }) => {
         }
     };
 
+    const handleAdd = async () => {
+        try {
+            console.log("trying to add progress log");
+            const rating = ratings[selected];
+            const token = await AsyncStorage.getItem('token');
+            if (!token) {
+                console.log('User not authenticated');
+                return;
+            }
+            const response = await axios.post('http://localhost:3000/progress/add', { date, rating, notes }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            // Handle the response as needed
+            return true;
+        } catch (error) {
+            console.error('Error:', error);
+            return false;
+            // Handle errors
+        }
+    }
+
     const handleClear = () => {
-        onChangeBrand("");
-        handleClosePress();
+    }
+
+    const handleSubmit = async () => {
+        try {
+            const addSuccess = await handleAdd();
+            if (addSuccess) {
+                handleClear();
+                handleClosePress();
+                fetchProgress();
+            }
+        } catch (error) {
+            // Ensure to reset the flag regardless of registration success or failure
+            console.log(error);
+        }
     }
 
     const icons = [
@@ -45,7 +80,7 @@ const ProgressModal = ({ handleClosePress }) => {
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1, gap: 20 }}>
                         <Text style={[styles.boldText, { textAlign: "left" }]}>Today's Date</Text>
-                        <Text style={[styles.lightText, { textAlign: "left" }]}>{today.toDateString()}</Text>
+                        <Text style={[styles.lightText, { textAlign: "left" }]}>{date}</Text>
                     </View>
                     <View style={{ flex: 2 }}>
                         <Text style={[styles.boldText, { textAlign: "left" }]}>How is your skin's condition?</Text>
@@ -81,7 +116,7 @@ const ProgressModal = ({ handleClosePress }) => {
             </View >
             <View style={{ flexDirection: "row", gap: 20 }}>
                 <Button label="Add Photos" onPress={() => { }}></Button>
-                <Button style="dark" label="Add Check In" func={handleClear}></Button>
+                <Button style="dark" label="Add Check In" func={handleSubmit}></Button>
             </View>
         </View >
 

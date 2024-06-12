@@ -1,17 +1,19 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
 import Header from '../Home/Header';
 import styles from '../../styles';
-import progressData from "../../assets/data/progress.json";
 import Ionicons from "react-native-vector-icons/Ionicons"
 import FloatingButton from '../../components/FloatingButton';
 import Button from '../../components/Button';
 import Modal from "../../components/Modal";
 import BottomSheet from '@gorhom/bottom-sheet';
 import ProgressModal from './ProgressModal';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Progress = ({ navigation }) => {
     const [selected, setSelected] = useState("checkin")
+    const [progressData, setProgress] = useState(null);
 
     const handleSelect = (label) => {
         setSelected(label);
@@ -20,6 +22,27 @@ const Progress = ({ navigation }) => {
     const bottomSheetRef = useRef(<BottomSheet></BottomSheet>);
     const handleOpenPress = () => bottomSheetRef.current?.expand();
     const handleClosePress = () => bottomSheetRef.current?.close();
+
+
+    const fetchProgress = async () => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            if (!token) {
+                setError('User not authenticated');
+                return;
+            }
+            const response = await axios.get('http://localhost:3000/progress', {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setProgress(response.data);
+        } catch (err) {
+            console.log(err);
+        } finally {
+        }
+    };
+    useEffect(() => {
+        fetchProgress();
+    }, []);
 
     return (
         <View style={styles.background}>
@@ -36,7 +59,7 @@ const Progress = ({ navigation }) => {
                 </FlatList>
             </View>
             <FloatingButton onPress={handleOpenPress} label="+ Add Check-in"></FloatingButton>
-            <Modal bottomSheetRef={bottomSheetRef} component={<ProgressModal handleClosePress={handleClosePress}></ProgressModal>}></Modal>
+            <Modal bottomSheetRef={bottomSheetRef} component={<ProgressModal handleClosePress={handleClosePress} fetchProgress={fetchProgress}></ProgressModal>}></Modal>
 
         </View >
     );
@@ -48,9 +71,13 @@ const ProgressCard = (props) => {
         okay: "swap-horizontal",
         bad: "trending-down"
     }
+    const temp = props.item.date.split(',');
+    const day = temp[0].toLowerCase();
+    const date = temp.slice(1).toString().toUpperCase();
+
     return (
         <Pressable style={{ gap: 5, marginTop: 10 }}>
-            <Text style={[styles.boldText, { textAlign: "left" }]}>sunday</Text>
+            <Text style={[styles.boldText, { textAlign: "left" }]}>{day}</Text>
             <View style={{ borderWidth: 1, borderColor: "lightgray", marginBottom: 15, height: 80, backgroundColor: "white", borderRadius: 15, flexDirection: "row", alignItems: "center", padding: 10 }}>
                 <View style={{ flex: 1, justifyContent: "center", flexDirection: "row" }}>
                     <View style={{ gap: 15, alignItems: "center", justifyContent: "space-around" }}>
@@ -60,7 +87,7 @@ const ProgressCard = (props) => {
                 </View>
                 <View style={{ width: 1, height: "100%", backgroundColor: "#E2EBF4" }}></View>
                 <View style={{ flex: 4, paddingLeft: 15, paddingRight: 15, gap: 10 }}>
-                    <Text style={[styles.headerSans, { textAlign: "left", fontSize: 14 }]}>JANUARY 1, 2024</Text>
+                    <Text style={[styles.headerSans, { textAlign: "left", fontSize: 14 }]}>{date}</Text>
                     <Text numberOfLines={1} style={[styles.lightText, { textAlign: "left", fontSize: 12 }]}>Notes: {props.item.notes}</Text>
                 </View>
             </View>
