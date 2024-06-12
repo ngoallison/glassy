@@ -5,14 +5,16 @@ import LargeIcon from "../../components/LargeIcon";
 import Button from "../../components/Button";
 import styles from "./styles";
 import { colors } from "../../Constants"
-
+import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
 
 const Register = ({ navigation }) => {
-  const [text, onChangeText] = useState("");
-  const [number, onChangeNumber] = useState("");
+  const [email, onChangeText] = useState("");
+  const [phone, onChangeNumber] = useState("");
   const [password, onChangePassword] = useState("");
+  const [isRegistering, setIsRegistering] = useState(false);
 
-  const [errors, setErrors] = useState({ username: false, number: false, password: false });
+  const [errors, setErrors] = useState({ username: false, phone: false, password: false });
 
 
   // Error checking, disallow empty input fields
@@ -20,12 +22,12 @@ const Register = ({ navigation }) => {
     let valid = true;
     let errors = {}
 
-    if (text.length === 0) {
+    if (email.length === 0) {
       errors.username = "* Required Field";
       valid = false
     }
-    if (number.length === 0) {
-      errors.number = "* Required Field";
+    if (phone.length === 0) {
+      errors.phone = "* Required Field";
       valid = false
     }
     if (password.length === 0) {
@@ -38,9 +40,53 @@ const Register = ({ navigation }) => {
 
   }
 
-  const handleSubmit = () => {
+  // const register = async () => {
+  //   try {
+  //     console.log("registering");
+  //     const response = await axios
+  //       .post('http://localhost:3000/users/register', { username, phone, password })
+  //       .then((res => console.log(res))
+  //         .catch((err) => console.log(err)));
+  //     console.log("done registering");
+  //     await SecureStore.setItemAsync('token', response.data.token);
+  //     console.log("done awaiting");
+  //     return true;
+  //     // setMessage('User registered successfully');
+  //   } catch (error) {
+  //     return false;
+  //     // setMessage('Registration failed');
+  //   }
+  // }
+
+  const register = async () => {
+    console.log("trying to post");
+    try {
+      const response = await axios.post('http://localhost:3000/users/register', { email, phone, password });
+      console.log(response.data); // Log the response data
+      // Handle the response as needed
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+      // Handle errors
+    }
+  }
+
+  const handleSubmit = async () => {
     if (validate()) {
-      navigation.navigate("Survey Page")
+      try {
+        // Set a flag to indicate registration is in progress
+        setIsRegistering(true);
+
+        const registrationSuccess = await register();
+        if (registrationSuccess) {
+          console.log("success!")
+          navigation.navigate('Survey Page');  // Replace 'NextPage' with your target page
+        }
+      } finally {
+        // Ensure to reset the flag regardless of registration success or failure
+        setIsRegistering(false);
+      }
     }
   };
 
@@ -68,20 +114,20 @@ const Register = ({ navigation }) => {
                 style={[styles.input, errors.username ? { borderColor: "red" } : {}]}
                 onChangeText={onChangeText}
                 placeholder="Email"
-                value={text}
+                value={email}
               />
               <Text style={{ color: "red", fontSize: 10 }}>{errors.username}</Text>
             </View>
 
             <View>
               <TextInput
-                style={[styles.input, errors.number ? { borderColor: "red" } : {}]}
+                style={[styles.input, errors.phone ? { borderColor: "red" } : {}]}
                 onChangeText={onChangeNumber}
                 placeholder="Phone Number"
                 keyboardType="numeric"
-                value={number}
+                value={phone}
               />
-              <Text style={{ color: "red", fontSize: 10 }}>{errors.number}</Text>
+              <Text style={{ color: "red", fontSize: 10 }}>{errors.phone}</Text>
             </View>
 
             <View>
@@ -98,9 +144,9 @@ const Register = ({ navigation }) => {
           </View>
           <View style={{ flex: 1 }}>
             <Button style="dark" func={handleSubmit} label="Register"></Button>
-
           </View>
-          {/* Register button to run error checks, pressable text to toggle between register and sign in page */}
+
+          {/* Register button to run error checks, pressable email to toggle between register and sign in page */}
           <View style={{ flex: 2, justifyContent: "space-around", }}>
             <Text style={[styles.smallDarkText]}>
               Already have an account?
