@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Dimensions, TextInput } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, TextInput, Pressable } from 'react-native';
 import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import dry from "../../assets/icons/dry-skin.png"
 import styles from '../../styles';
@@ -12,11 +12,20 @@ import React, { useState } from 'react';
 const windowHeight = Dimensions.get("window").height;
 
 const ProgressModal = ({ handleClosePress }) => {
-    const pros = ["Dark Spots", "Exfoliating", "Lightweight"];
-    const cons = ["Fragrance", "Purging"]
 
     const today = new Date(Date.now());
-    const [brand, onChangeBrand] = useState("");
+    const [notes, setNotes] = useState("");
+    const [selected, setSelected] = useState(null);
+
+    const handleSelect = (index) => {
+        if (index === selected) {
+            // Deselect the button if it's already selected
+            setSelected(null);
+        } else {
+            // Otherwise, select the button
+            setSelected(index);
+        }
+    };
 
     const handleClear = () => {
         onChangeBrand("");
@@ -44,10 +53,14 @@ const ProgressModal = ({ handleClosePress }) => {
                         <View style={{ flexDirection: "row", marginVertical: 30, justifyContent: "space-around", gap: 20 }}>
                             {icons.map((icon, index) => {
                                 return (
-                                    <View style={{ flex: 1, padding: 10, borderWidth: 1, borderColor: "lightgray", borderRadius: 15, gap: 15, alignItems: "center", justifyContent: "space-around" }}>
+                                    <Pressable
+                                        key={index}
+                                        style={{ backgroundColor: selected == index ? "#ECF7FE" : "white", flex: 1, padding: 10, borderWidth: 1, borderColor: "lightgray", borderRadius: 15, gap: 15, alignItems: "center", justifyContent: "space-around" }}
+                                        onPress={() => handleSelect(index)}
+                                    >
                                         <Ionicons name={icon[0]} color="#3A405A" size={40}></Ionicons>
                                         <Text style={[styles.lightText, { fontSize: 12 }]}>{icon[1]}</Text>
-                                    </View>
+                                    </Pressable>
                                 );
                             })}
                         </View>
@@ -60,8 +73,8 @@ const ProgressModal = ({ handleClosePress }) => {
                             numberofLines={5}
                             style={[styles.inputSoft, { minHeight: 120 }]}
                             placeholder="Round Lab..."
-                            onChange={onChangeBrand}
-                            value={brand}
+                            onChangeText={setNotes}
+                            value={notes}
                         ></TextInput>
                     </View>
                 </View>

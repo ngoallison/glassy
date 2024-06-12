@@ -10,8 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const SignIn = ({ navigation }) => {
 
   // State checkers for user input
-  const [email, onChangeEmail] = useState("");
-  const [password, onChangePassword] = useState("");
+  const [email, onChangeEmail] = useState("test@gmail.com");
+  const [password, onChangePassword] = useState("password");
 
   const [errors, setErrors] = useState({ username: false, password: false });
 
@@ -99,6 +99,7 @@ const SignIn = ({ navigation }) => {
                 onChangeText={onChangePassword}
                 secureTextEntry={true}
                 placeholder="Password"
+                value={password}
               />
               <Text style={{ color: "red", fontSize: 10 }}>{errors.password}</Text>
               <Text style={[styles.boldText, { textAlign: "right", marginTop: 10 }]}>forgot password?</Text>
