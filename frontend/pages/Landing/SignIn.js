@@ -4,7 +4,8 @@ import LargeIcon from "../../components/LargeIcon";
 import Button from "../../components/Button";
 import styles from "./styles";
 import axios from 'axios';
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const SignIn = ({ navigation }) => {
 
@@ -39,7 +40,9 @@ const SignIn = ({ navigation }) => {
     console.log("trying to post");
     try {
       const response = await axios.post('http://localhost:3000/users/login', { email, password });
-      // Handle the response as needed
+      const jwtToken = response.data.jwtToken;
+      console.log(response.data);
+      await AsyncStorage.setItem('token', jwtToken);
       return true;
     } catch (error) {
       console.error('Error:', error);

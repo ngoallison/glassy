@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../database/index.js');
 const jwtGenerator = require("../utils/jwtGenerator");
-const authorize = require("../middleware/authorize");
 
 /*
 Request type: GET
@@ -45,8 +44,9 @@ router.post('/login', async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ error: 'Invalid credentials' });
         }
+        console.log(user.id)
         const jwtToken = jwtGenerator(user.id);
-        res.status(201).json({ message: { jwtToken } });
+        return res.json({ jwtToken });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -65,9 +65,7 @@ router.post('/register', async (req, res) => {
         console.log('Register query:', query);  // Add this line
         const newUser = await db.query(query, [email, phone, hashedPassword]);
         const jwtToken = jwtGenerator(newUser.rows[0].id);
-        res.status(201).json({ email, jwtToken });
-
-        // res.status(201).json({ message: 'woo!' });
+        return res.json({ jwtToken });
 
     } catch (error) {
         console.error('Error during registration:', error);

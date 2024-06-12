@@ -1,9 +1,10 @@
-import { StatusBar } from "expo-status-bar";
 import styles from "../../styles";
-import { Text, View, Pressable, Image, TextInput, StyleSheet, FlatList } from "react-native";
-import React, { Component, useRef } from "react";
+import { Text, View, TextInput, StyleSheet, FlatList } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "../Home/Header";
 import BottomSheet from '@gorhom/bottom-sheet';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import productsData from "../../assets/data/products.json";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -14,21 +15,35 @@ import AddModal from "./AddModal";
 
 const Products = ({ navigation }) => {
 
-    const [text, onChangeText] = React.useState("");
+    const [text, onChangeText] = useState("");
+    const [products, setProducts] = useState([]);
 
     const bottomSheetRef = useRef(<BottomSheet></BottomSheet>);
     const handleOpenPress = () => bottomSheetRef.current?.expand();
     const handleClosePress = () => bottomSheetRef.current?.close();
 
-    const renderItem = ({ item }) => {
-        <View style={inStyle.product}>
-            <Text>Hello</Text>
-            <Text>{item.name}</Text>
-            <Text>{item.brand}</Text>
-            <Text>{item.category}</Text>
-            <Text>{item}</Text>
-        </View>
-    }
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const token = await AsyncStorage.getItem('token');
+                if (!token) {
+                    setError('User not authenticated');
+                    setLoading(false);
+                    return;
+                }
+                const response = await axios.get('http://localhost:3000/products', {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                setProducts(response.data);
+                console.log(response.data);
+            } catch (err) {
+                console.log(err);
+            } finally {
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     return (
         <View style={[styles.background]}>

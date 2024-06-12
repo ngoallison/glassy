@@ -6,7 +6,7 @@ import Button from "../../components/Button";
 import styles from "./styles";
 import { colors } from "../../Constants"
 import axios from 'axios';
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Register = ({ navigation }) => {
   const [email, onChangeText] = useState("");
@@ -43,7 +43,9 @@ const Register = ({ navigation }) => {
     console.log("trying to post");
     try {
       const response = await axios.post('http://localhost:3000/users/register', { email, phone, password });
-      console.log(response.data); // Log the response data
+      const jwtToken = response.data.jwtToken;
+      console.log(response.data);
+      await AsyncStorage.setItem('token', jwtToken);
       // Handle the response as needed
       return true;
     } catch (error) {
