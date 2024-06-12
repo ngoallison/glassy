@@ -27,7 +27,6 @@ const AddModal = ({ handleClosePress }) => {
     const [rating, setRating] = useState(0);
 
     const ratingCompleted = (rating) => {
-        console.log("Rating is: " + rating);
         setRating(rating);
     };
 

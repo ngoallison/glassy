@@ -64,7 +64,7 @@ const Products = ({ navigation }) => {
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
                     <FlatList
                         key={Math.random()}
-                        data={productsData}
+                        data={products}
                         renderItem={({ item }) => <ProductCard item={item}></ProductCard>}
                         columnWrapperStyle={{ flexWrap: "wrap", justifyContent: "space-between" }}
                         style={{ marginTop: 20, marginBottom: 40 }}
