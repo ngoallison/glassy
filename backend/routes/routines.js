@@ -36,16 +36,16 @@ const authenticateToken = require('../middleware/authenticateToken');
 // Fetch routines for a user
 router.get('/', authenticateToken, async (req, res) => {
     const id = req.user.id;
-    const { day, time } = req.body; // The ID of the currently logged-in user
+    const day = req.query.day;
+    const time = req.query.time;
+    console.log(day, time, id);
     try {
         const routines = await pool.query(
             `SELECT
-                r.id AS routine_id,
-                r.day,
-                r.time,
                 rp.product_id,
-                p.name AS product_name,
-                p.brand AS product_brand,
+                p.brand AS brand,
+                p.name AS name,
+                p.category AS category,
                 rp.order
             FROM
                 public."Routines" r
